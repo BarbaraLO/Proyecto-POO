@@ -1,23 +1,42 @@
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
 
 public class Pacientes {
+    
+    public Opciones opciones = new Opciones();
+    
+    
     private ArrayList <Pacientes> pacientes;
-    private String nombre;
-    private int rut;
-    private int fechaNacimiento;
-    private int telefono;
-    private String correo;
+    private String Nombre;
+    private int Rut;
+    private Date fechaNacimiento;
+    private int Telefono;
+    private String Correo;
 
     public Pacientes() {
         this.pacientes = new ArrayList<>();
-        nombre = "";
-        rut = 0;
-        fechaNacimiento = 0;
-        telefono = 0;
-        correo = "";
+        Nombre = "";
+        Rut = 0;
+        Telefono = 0;
+        Correo = "";
     }
     
+
+    //constructores
+    public Pacientes(String nombre, int rut, int telefono, String correo){
+        
+    }
+    
+    public Pacientes(String nombre, int rut, Date fecha, int telefono, String correo){
+        this.Nombre=nombre;
+        this.Rut=rut;
+        this.fechaNacimiento=fecha;
+        this.Telefono=telefono;
+        this.Correo=correo;  
+    }
 
     //Metodos
     
@@ -25,22 +44,68 @@ public class Pacientes {
     //busca entre el listado de los pacientes si existe coincidencia con el rut ingresado
     //si lo encuentra retorna true para evitar crear un paciente duplicado
     public boolean buscarPaciente(int rut){
-        for(int i = 0; i >= pacientes.size(); i++){
-            if(pacientes.get(i).getRut().equals(rut)){
+        for(int i = 0; i < pacientes.size(); i++){
+            if(pacientes.get(i).getRut()==(rut)){
                 return true;
             }
         }return false;   
     }
-    public void AgregarPaciente(){
-        System.out.println("Agregando Paciente, a continuacion ingrese sus datos");    
+    
+    
+    public void AgregarPaciente() throws ParseException{
+        String nombre;
+        int rut;
+        String fecha;
+        int telefono;
+        String correo;
+        int cedula;
+        
+        Scanner Entrada = new Scanner(System.in);
+        System.out.println("Agregando Paciente, a continuacion ingrese sus datos"); 
+        System.out.println("Ingrese su nombre completo");
+        nombre=Entrada.next();
+        
+        System.out.println("Ingrese su RUT");
+        rut=Entrada.nextInt();
+        
+        System.out.println("Ingrese su fecha de nacimiento en formato dd/mm/yy");
+        fecha=Entrada.next();
+        
+        System.out.println("Ingrese su telefono");
+        telefono=Entrada.nextInt();
+        
+        System.out.println("Ingrese su correo electronico");
+        correo=Entrada.next();
+        
+        
+        
+        Date FFecha=new SimpleDateFormat("dd/mm/yyyy").parse(fecha);
+        System.out.println("Se ha ingresado un nuevo paciente con exito!");
+        
+        cedula=opciones.ValidarEntero();
+        
+        
     }
+       
+    
+    
+    
     
     public void  ModificarPaciente(int Rut){
         System.out.println("Modificar Paciente"+ Rut); 
     }
     
     public void EliminarPaciente(int Rut){
-        System.out.println("Elimindo Paciente"+ Rut);
+        opciones.Mensaje("Ingrese Rut que desea eliminar");
+        int cedula=opciones.ValidarEntero();
+        int i;
+        
+        for(i=0; i<pacientes.size(); i++){
+            if(cedula==pacientes.get(i).Rut){
+                pacientes.remove(i);
+                opciones.Mensaje("Se ha eliminado el rut del paciente");
+            }
+        }
     }
 
     
@@ -55,44 +120,59 @@ public class Pacientes {
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.Nombre = nombre;
     }
 
     public int getRut() {
-        return rut;
+        return Rut;
     }
 
     public void setRut(int rut) {
-        this.rut = rut;
+        this.Rut = rut;
     }
 
-    public int getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(int fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+
+
     public int getTelefono() {
-        return telefono;
+        return Telefono;
     }
 
     public void setTelefono(int telefono) {
-        this.telefono = telefono;
+        this.Telefono = telefono;
     }
 
     public String getCorreo() {
-        return correo;
+        return Correo;
     }
 
     public void setCorreo(String correo) {
-        this.correo = correo;
+        this.Correo = correo;
+    }
+
+    boolean buscarPaciente(String RutPaciente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    Pacientes RutPaciente(String toString) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private boolean BuscarPaciente(int cedula) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
 }
+
