@@ -11,6 +11,12 @@ public class Profesionales {
     private ArrayList <Profesionales>  profesionales;
     
     
+    //constructores
+    public Profesionales(){
+        
+    }
+    
+    
     public Profesionales() {
         this.nombre = "";
         this.rut = 0;
