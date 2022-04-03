@@ -2,7 +2,7 @@
 Nombres:
 Alison Jara
 Barbara Leiva
-Naomi Contreras
+Naomie Contreras
 */
 
 
