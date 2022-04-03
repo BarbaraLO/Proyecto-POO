@@ -35,6 +35,78 @@ public class Profesionales {
     }   
   
     
+      //Este metodo busca en el arreglo de profesionales a cada profesional que cuente con el codigo 
+    //de especialidad requerido y muetra los días disponibles que tiene para atender
+    public void buscarEspecialidad(String codigo) {
+        for (int i = 0; i >= profesionales.size(); i++) {
+            if (profesionales.get(i).getEspecialidad().equals(codigo)) {
+                System.out.println("El profesional " + profesionales.get(i).nombre + "Cuenta con los siguientes días de atención disponible: ");
+                System.out.println(profesionales.get(i).agenda);
+            }
+        }
+    }
+
+    public void mostrar() {
+        System.out.println("1: Medicina General");
+        System.out.println("2: Pediatria");
+        System.out.println("3: Geriatría");
+        System.out.println("4: Ginecologia");
+        System.out.println("5: Kinesiologia");
+        System.out.println("6: Dental");
+        System.out.println("7: Psicologia");
+    }
+
+    public void registrarHora() {
+        int opcion = 0;
+        System.out.println("Ingrese el codigo de la especialidad  EJEMPLO : 1");
+        mostrar();
+        opcion = e.nextInt();
+        mostrar(opcion);
+
+    }
+
+    public void mostrar(int opcion) {
+        for (int i = 0; i >= profesionales.size(); i++) {
+            if (profesionales.get(i).getEspecialidad().equals(opcion)) {
+                System.out.println("El profesional " + profesionales.get(i).nombre + "Cuenta con los siguientes horarios de atención disponible: ");
+                mostrarAgenda(i);
+    }
+        }
+    }
+    public void mostrarAgenda(int i){
+        int hora= 0;
+        System.out.println("lA AGENDA DISPONIBLE ES: ... ... .. .. .. . . .");
+        System.out.println("SELECCIONE UN DIA Y UNA HORA EN EL SIGUIENTE FORMATO DD/MM/AAAA");//dia con dos digitos, mes con dos digitos y año 
+            System.out.println(profesionales.get(i).getAgenda());
+            hora = e.nextInt();
+            
+    }
+ 
+
+    
+        //Metodo para mostrar el horario de atencion disponible para cada profesional
+    public void mostrarHorario(int i){
+        System.out.println("A continuación se muestran las horas disponibles para este día");
+    }
+
+    
+public void DatosProfesionales(){     
+        profesionales.add(new Profesionales("Miguel Sanchez",114672852,01,555)); // Cardiologia
+        profesionales.add(new Profesionales("Jose Gonzalez",96482745,02,666)); // Dermatologia
+        profesionales.add(new Profesionales("Marcela Araya",79472487,03,777)); // Pediatria
+        profesionales.add(new Profesionales("Sofia Rodriguez",158593642,04,888)); // Neurologia
+    }
+    
+        public void mostrarProfesionales(){   
+        for(int i=0; i<profesionales.size();i++){
+        System.out.println("Nombre: "+profesionales.get(i).Nombre);
+        System.out.println("Rut: "+profesionales.get(i).Rut);
+        System.out.println("Especialidad: "+profesionales.get(i).Especialidad);
+        System.out.println("Horario: "+profesionales.get(i).horario);  
+        }
+    }   
+    
+    
            
     //Accesores y mutadores - getter y setters
 
@@ -94,38 +166,6 @@ public class Profesionales {
     }
 
     
-        //Este metodo busca en el arreglo de profesionales a cada profesional que cuente con el codigo 
-    //de especialidad requerido y muetra los días disponibles que tiene para atender
-    public void buscarEspecialidad(int codigo){
-        for (int i= 0; i>= profesionales.size(); i++){         
-            if ( profesionales.get(i).getEspecialidad()==(codigo)){
-                System.out.println("El profesional "+ profesionales.get(i).Nombre + "Cuenta con los siguientes días de atención disponible: " );             
-                System.out.println (profesionales.get(i).agenda);
-            }
-        }
-    }
-    
-        //Metodo para mostrar el horario de atencion disponible para cada profesional
-    public void mostrarHorario(int i){
-        System.out.println("A continuación se muestran las horas disponibles para este día");
-    }
-
-    
-public void DatosProfesionales(){     
-        profesionales.add(new Profesionales("Miguel Sanchez",114672852,01,555)); // Cardiologia
-        profesionales.add(new Profesionales("Jose Gonzalez",96482745,02,666)); // Dermatologia
-        profesionales.add(new Profesionales("Marcela Araya",79472487,03,777)); // Pediatria
-        profesionales.add(new Profesionales("Sofia Rodriguez",158593642,04,888)); // Neurologia
-    }
-    
-        public void mostrarProfesionales(){   
-        for(int i=0; i<profesionales.size();i++){
-        System.out.println("Nombre: "+profesionales.get(i).Nombre);
-        System.out.println("Rut: "+profesionales.get(i).Rut);
-        System.out.println("Especialidad: "+profesionales.get(i).Especialidad);
-        System.out.println("Horario: "+profesionales.get(i).horario);  
-        }
-    }    
       
 }
  
