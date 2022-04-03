@@ -46,26 +46,4 @@ public class Principal {
         }
     }
     
-     public static void datosProfesionales (){
-    
-        Profesionales profesional1 = new Profesionales();        
-        profesional1.setNombre("Miguel Sanchez");
-        profesional1.setRut(114672852);
-        profesional1.setEspecialidad("Cardiologia");
-        
-        Profesionales profesional2 = new Profesionales();
-        profesional2.setNombre("Jose Gonzalez");
-        profesional2.setRut(96482745);
-        profesional2.setEspecialidad("Dermatologia");
-        
-        Profesionales profesional3 = new Profesionales();
-        profesional3.setNombre("Marcela Araya");
-        profesional3.setRut(79472487);
-        profesional3.setEspecialidad("Pediatria");
-        
-        Profesionales profesional4 = new Profesionales();
-        profesional4.setNombre("Sofia Rodriguez");
-        profesional4.setRut(158593642);
-        profesional4.setEspecialidad("Neurologia");
-    }
 }
