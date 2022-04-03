@@ -95,9 +95,8 @@ public class Pacientes {
                 System.out.println("El paciente ya se encontraba registrado en el sistema");
                 profesional.registrarHora();
             }
-            Pacientes paciente = null;
-            
-            pacientes.add(paciente);
+            Pacientes pacientes = new Pacientes();
+            pacientes.AgregarPaciente();
         }
     }
     
