@@ -19,10 +19,10 @@ public class Profesionales {
         
     }
     
-    public Profesionales(String nombre, int rut, int especialidad, double horario) {
-        this.nombre = nombre;
-        this.rut = rut;
-        this.especialidad = especialidad;
+    public Profesionales(String Nombre, int Rut, int Especialidad, double horario) {
+        this.Nombre = Nombre;
+        this.Rut = Rut;
+        this.Especialidad = Especialidad;
         this.horario = horario;
     }    
     
@@ -120,9 +120,9 @@ public void DatosProfesionales(){
     
         public void mostrarProfesionales(){   
         for(int i=0; i<profesionales.size();i++){
-        System.out.println("Nombre: "+profesionales.get(i).nombre);
-        System.out.println("Rut: "+profesionales.get(i).rut);
-        System.out.println("Especialidad: "+profesionales.get(i).especialidad);
+        System.out.println("Nombre: "+profesionales.get(i).Nombre);
+        System.out.println("Rut: "+profesionales.get(i).Rut);
+        System.out.println("Especialidad: "+profesionales.get(i).Especialidad);
         System.out.println("Horario: "+profesionales.get(i).horario);  
         }
     }    
