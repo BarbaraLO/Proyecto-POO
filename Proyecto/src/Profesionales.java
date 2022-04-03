@@ -91,17 +91,6 @@ public class Profesionales {
         this.Especialidad = Especialidad;
     }
 
-    public void setAgenda(ArrayList agenda) {
-        this.agenda = agenda;
-    }
-
-    public void setHorario(double horario) {
-        this.horario = horario;
-    }
-
-    public void setProfesional(Profesionales profesional) {
-        this.profesional = profesional;
-    }
 
 
 
