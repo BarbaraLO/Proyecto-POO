@@ -103,9 +103,7 @@ public class Profesionales {
         this.profesional = profesional;
     }
 
-    public void setProfesionales(ArrayList<Profesionales> profesionales) {
-        this.profesionales = profesionales;
-    }
+
 
    
     
