@@ -62,6 +62,7 @@ public class Pacientes {
         
         Scanner Entrada = new Scanner(System.in);
         System.out.println("Agregando Paciente, a continuacion ingrese sus datos"); 
+        
         System.out.println("Ingrese su nombre completo");
         nombre=Entrada.next();
         
@@ -84,11 +85,11 @@ public class Pacientes {
         
         cedula=opciones.ValidarEntero();
         
-        
+        Pacientes paciente = new Pacientes(nombre, rut, fecha, telefono, correo);
+        pacientes.add(paciente);
+        System.out.println("Se ha ingresado un nuevo paciente con exito!");
     }
        
-    
-    
     
     
     public void  ModificarPaciente(int Rut){
