@@ -6,44 +6,55 @@ Naomi Contreras
 */
 
 
-
+import java.text.ParseException;
 import java.util.Scanner;
-
-
 
 public class Principal {
 
-    public static void main(String[] args) {
-        Profesionales profesional = new Profesionales();
-        Principal p = new Principal();
-        String especialidad= "";
-        int fecha=0;
-        int hora=0;
-        int rut=0;
-        Scanner sn = new Scanner(System.in);
-        System.out.println ("Por favor ingrese su Rut sin punto ni guion para continuar, en caso de no estar registrado debera realizar su registro");
-        rut=sn.nextInt();
-        p.buscarPaciente(rut);
-        System.out.println("Ingrese el codigo de la especialidad");
-        especialidad= sn.next(especialidad);
-        System.out.println("Ingrese el día de este mes en el cual desea agendar una hora  por ejemplo: 27 marzo");
-        profesional.buscarEspecialidad(especialidad);
-        System.out.println("Estos son los horarios disponibles para este día");
-        fecha = sn.nextInt();
-        System.out.println("Seleccione el horario a elegir");
-        hora=sn.nextInt();
-        
-            
+    public static Pacientes pacientes = new Pacientes();
+    public static Profesionales profesional = new Profesionales();
+
+    public static void main(String[] args) throws ParseException {
+        Scanner Entrada;
+        int opcion;
+        do {
+            System.out.println("Ingrese una opcion");
+            System.out.println("1- Mostrar especialidades");
+            System.out.println("2- Registrar hora");
+            System.out.println("3- Mostrar hora del paciente");
+            System.out.println("4- Cambiar hora");
+            System.out.println("5- Eliminar hora");
+            System.out.println("6- Salir");
+
+            Entrada = new Scanner(System.in);
+            opcion = Entrada.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    profesional.mostrar();
+                    break;
+
+                case 2:
+                    pacientes.validarPaciente();
+                    break;
+
+                case 3:
+                    pacientes.mostrarHora();
+                    break;
+
+                case 4:
+                    pacientes.cambiarHora();
+
+                    break;
+
+                case 5:
+                    pacientes.eliminarHora();
+
+                    break;
+
+            }
+
+        } while (opcion != 6);
     }
-    public void buscarPaciente(int rut){
-        boolean respuesta;
-        Pacientes p = new Pacientes();
-        respuesta = p.buscarPaciente(rut);
-        if(respuesta == true){
-             System.out.println("Se encuentra registrado en el sistema, a continuación será dirigida a registrar su hora");
-        }else{
-             System.out.println("Iniciando registro de paciente, ingrese su nombre completo");
-        }
-    }
-    
+
 }
