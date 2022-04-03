@@ -46,7 +46,7 @@ public class Profesionales {
         return Rut;
     }
 
-    public String getEspecialidad() {
+    public int getEspecialidad() {
         return Especialidad;
     }
 
@@ -76,7 +76,7 @@ public class Profesionales {
         this.Rut = Rut;
     }
 
-    public void setEspecialidad(String Especialidad) {
+    public void setEspecialidad(int Especialidad) {
         this.Especialidad = Especialidad;
     }
 
@@ -98,7 +98,7 @@ public class Profesionales {
     //de especialidad requerido y muetra los días disponibles que tiene para atender
     public void buscarEspecialidad(int codigo){
         for (int i= 0; i>= profesionales.size(); i++){         
-            if ( profesionales.get(i).getEspecialidad().equals(codigo)){
+            if ( profesionales.get(i).getEspecialidad()==(codigo)){
                 System.out.println("El profesional "+ profesionales.get(i).Nombre + "Cuenta con los siguientes días de atención disponible: " );             
                 System.out.println (profesionales.get(i).agenda);
             }
