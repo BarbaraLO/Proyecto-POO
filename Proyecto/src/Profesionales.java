@@ -19,7 +19,14 @@ public class Profesionales {
         
     }
     
-    public Profesionales(String Nombre, int Rut,int Telefono, ArrayList agenda, double horario, Profesionales profesionaels ){
+    public Profesionales(String nombre, int rut, String especialidad, double horario) {
+        this.nombre = nombre;
+        this.rut = rut;
+        this.especialidad = especialidad;
+        this.horario = horario;
+    }    
+    
+        public Profesionales(String Nombre, int Rut,int Telefono, ArrayList agenda, double horario, Profesionales profesionaels ){
         this.Nombre = Nombre;
         this.Rut = Rut;
         this.agenda = new ArrayList();
@@ -28,9 +35,7 @@ public class Profesionales {
     }   
   
     
-    
-    
-    
+           
     //Accesores y mutadores - getter y setters
 
     public String getNombre() {
@@ -61,22 +66,6 @@ public class Profesionales {
         return profesionales;
     }
     
-    
-        //Este metodo busca en el arreglo de profesionales a cada profesional que cuente con el codigo 
-    //de especialidad requerido y muetra los días disponibles que tiene para atender
-    public void buscarEspecialidad(String codigo){
-        for (int i= 0; i>= profesionales.size(); i++){         
-            if ( profesionales.get(i).getEspecialidad().equals(codigo)){
-                System.out.println("El profesional "+ profesionales.get(i).Nombre + "Cuenta con los siguientes días de atención disponible: " );             
-                System.out.println (profesionales.get(i).agenda);
-            }
-        }
-    }
-    
-        //Metodo para mostrar el horario de atencion disponible para cada profesional
-    public void mostrarHorario(int i){
-        System.out.println("A continuación se muestran las horas disponibles para este día");
-    }
 
 
     public void setNombre(String Nombre) {
@@ -104,10 +93,39 @@ public class Profesionales {
         this.profesional = profesional;
     }
 
+    
+        //Este metodo busca en el arreglo de profesionales a cada profesional que cuente con el codigo 
+    //de especialidad requerido y muetra los días disponibles que tiene para atender
+    public void buscarEspecialidad(String codigo){
+        for (int i= 0; i>= profesionales.size(); i++){         
+            if ( profesionales.get(i).getEspecialidad().equals(codigo)){
+                System.out.println("El profesional "+ profesionales.get(i).Nombre + "Cuenta con los siguientes días de atención disponible: " );             
+                System.out.println (profesionales.get(i).agenda);
+            }
+        }
+    }
+    
+        //Metodo para mostrar el horario de atencion disponible para cada profesional
+    public void mostrarHorario(int i){
+        System.out.println("A continuación se muestran las horas disponibles para este día");
+    }
 
-   
     
+public void DatosProfesionales(){     
+        profesionales.add(new Profesionales("Miguel Sanchez",114672852,"Cardiologia",555));
+        profesionales.add(new Profesionales("Jose Gonzalez",96482745,"Dermatologia",666));
+        profesionales.add(new Profesionales("Marcela Araya",79472487,"Pediatria",777));
+        profesionales.add(new Profesionales("Sofia Rodriguez",158593642,"Neurologia",888));
+    }
     
-    
+        public void mostrarProfesionales(){   
+        for(int i=0; i<profesionales.size();i++){
+        System.out.println("Nombre: "+profesionales.get(i).nombre);
+        System.out.println("Rut: "+profesionales.get(i).rut);
+        System.out.println("Especialidad: "+profesionales.get(i).especialidad);
+        System.out.println("Horario: "+profesionales.get(i).horario);  
+        }
+    }    
+      
 }
  
