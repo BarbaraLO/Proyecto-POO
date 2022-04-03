@@ -37,58 +37,6 @@ public class Pacientes {
         this.Telefono=telefono;
         this.Correo=correo;  
     }
-
-        //getters y setters
-
-    public ArrayList<Pacientes> getPacientes() {
-        return pacientes;
-    }
-
-    public void setPacientes(ArrayList<Pacientes> pacientes) {
-        this.pacientes = pacientes;
-    }
-
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.Nombre = nombre;
-    }
-
-    public int getRut() {
-        return Rut;
-    }
-
-    public void setRut(int rut) {
-        this.Rut = rut;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public int getTelefono() {
-        return Telefono;
-    }
-
-    public void setTelefono(int telefono) {
-        this.Telefono = telefono;
-    }
-
-    public String getCorreo() {
-        return Correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.Correo = correo;
-    }
-    
-    
    
     //Metodos
     
@@ -184,6 +132,85 @@ public class Pacientes {
     private boolean BuscarPaciente(int cedula) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public void mostrarHora(){
+        System.out.println("Su hora de atención está registrada para " + reserva);
+    }
+    public void cambiarHora(){
+        System.out.println("A continuacion se cambiaran los datos de su cita medica");
+    }
+    public void eliminarHora(){
+        System.out.println("Hora eliminada");
+    }
+    
+    
+    
+     //getters y setters
+
+    public ArrayList<Pacientes> getPacientes() {
+        return pacientes;
+    }
+
+    public void setPacientes(ArrayList<Pacientes> pacientes) {
+        this.pacientes = pacientes;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getRut() {
+        return rut;
+    }
+
+    public void setRut(int rut) {
+        this.rut = rut;
+    }
+
+    public int getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(int fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(String reserva) {
+        this.reserva = reserva;
+    }
+
+    public static Profesionales getProfesional() {
+        return profesional;
+    }
+
+    public static void setProfesional(Profesionales profesional) {
+        Pacientes.profesional = profesional;
+    }
+    
     
     
 }
