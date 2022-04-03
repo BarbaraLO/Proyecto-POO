@@ -3,29 +3,25 @@ import java.util.ArrayList;
 
 public class Profesionales {
     
-    private String Nombre; //coresponde al nombre del profesional
-    private int Rut; //corresponde al rut del profesional para poder identificarlo como persona individual
-    private int Especialidad; // se le asigna un codigo de especialidad según corresponda
+    private String nombre; //coresponde al nombre del profesional
+    private int rut; //corresponde al rut del profesional para poder identificarlo como persona individual
+    private String especialidad; // se le asigna un codigo de especialidad según corresponda
     private ArrayList agenda; // agenda trabaja con codigos del 1 al 6 representando los días de la semana, esto para tener una idea de los días disponibles del profesional
     private double horario; // el horario muestra la última hora disponible del profesional, se considera que el horaio de inicio de atención es desde las 8am.
-    private Profesionales profesional;
-    private ArrayList <Profesionales>  profesionales;
-    /**
-     *
-     */
-    
-    //constructores
-    public Profesionales(){
-        
+    private ArrayList<Profesionales> profesionales;
+    Scanner e;
+
+    public Profesionales() {
+
+        this.nombre = "";
+        this.rut = 0;
+        especialidad = "";
+        this.agenda = new ArrayList();
+        this.horario = 0;
+        this.profesionales = new ArrayList<>();
     }
-    
-    public Profesionales(String Nombre, int Rut, int Especialidad, double horario) {
-        this.Nombre = Nombre;
-        this.Rut = Rut;
-        this.Especialidad = Especialidad;
-        this.horario = horario;
-    }    
-    
+    //constructores
+   
         public Profesionales(String Nombre, int Rut, ArrayList agenda, double horario, Profesionales profesionales ){
         this.Nombre = Nombre;
         this.Rut = Rut;
