@@ -35,14 +35,6 @@ public class Opciones {
     }
     
     public int ValidarEntero(){
-        /*
-        String cadena=Entrada.next();
-        if(cadena.matches("[0-9]*"))
-            return Integer.valueOf(cadena);
-        else
-           Mensaje("Dato no válido");
-        
-        return 0;*/
         int Cadena=-1;
        do{
         try{
