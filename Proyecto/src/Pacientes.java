@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Pacientes {
     
-    public Opciones opciones = new Opciones();
+    public Validaciones validaciones = new Validaciones();
     
     
     private ArrayList <Pacientes> pacientes;
@@ -38,6 +38,58 @@ public class Pacientes {
         this.Correo=correo;  
     }
 
+        //getters y setters
+
+    public ArrayList<Pacientes> getPacientes() {
+        return pacientes;
+    }
+
+    public void setPacientes(ArrayList<Pacientes> pacientes) {
+        this.pacientes = pacientes;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.Nombre = nombre;
+    }
+
+    public int getRut() {
+        return Rut;
+    }
+
+    public void setRut(int rut) {
+        this.Rut = rut;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public int getTelefono() {
+        return Telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.Telefono = telefono;
+    }
+
+    public String getCorreo() {
+        return Correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.Correo = correo;
+    }
+    
+    
+   
     //Metodos
     
     
@@ -84,7 +136,7 @@ public class Pacientes {
         paciente.add(paciente);
         System.out.println("Se ha ingresado un nuevo paciente con exito!");
         
-        cedula=opciones.ValidarEntero();
+        cedula=validaciones.validar();
    
     }
        
@@ -106,70 +158,20 @@ public class Pacientes {
     }
     
     public void EliminarPaciente(int Rut){
-        opciones.Mensaje("Ingrese Rut que desea eliminar");
-        int cedula=opciones.ValidarEntero();
+        System.out.println("Ingrese Rut que desea eliminar");
+        int cedula=validaciones.validar();
         int i;
         
         for(i=0; i<pacientes.size(); i++){
             if(cedula==pacientes.get(i).Rut){
                 pacientes.remove(i);
-                opciones.Mensaje("Se ha eliminado el rut del paciente");
+                System.out.println("Se ha eliminado el rut del paciente");
             }
         }
     }
 
     
-    //getters y setters
 
-    public ArrayList<Pacientes> getPacientes() {
-        return pacientes;
-    }
-
-    public void setPacientes(ArrayList<Pacientes> pacientes) {
-        this.pacientes = pacientes;
-    }
-
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.Nombre = nombre;
-    }
-
-    public int getRut() {
-        return Rut;
-    }
-
-    public void setRut(int rut) {
-        this.Rut = rut;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-
-
-    public int getTelefono() {
-        return Telefono;
-    }
-
-    public void setTelefono(int telefono) {
-        this.Telefono = telefono;
-    }
-
-    public String getCorreo() {
-        return Correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.Correo = correo;
-    }
 
     boolean buscarPaciente(String RutPaciente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
