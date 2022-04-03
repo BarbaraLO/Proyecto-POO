@@ -78,18 +78,28 @@ public class Pacientes {
         System.out.println("Ingrese su correo electronico");
         correo=Entrada.next();
         
-        
-        
         Date FFecha=new SimpleDateFormat("dd/mm/yyyy").parse(fecha);
+        
+        Pacientes paciente = new Pacientes(nombre,rut,FFecha,telefono,correo);
+        paciente.add(paciente);
         System.out.println("Se ha ingresado un nuevo paciente con exito!");
         
         cedula=opciones.ValidarEntero();
-        
-        Pacientes paciente = new Pacientes(nombre, rut, fecha, telefono, correo);
-        pacientes.add(paciente);
-        System.out.println("Se ha ingresado un nuevo paciente con exito!");
+   
     }
        
+     public void comprobarSiEstaRegistrado(int rut){
+ 
+        for(int i=0; i<pacientes.size();i++){
+            if(pacientes.get(i).Rut==rut){
+                System.out.println("El paciente ya se encontraba registrado en el sistema");
+                profesional.registrarHora();
+            }
+            Pacientes paciente = null;
+            
+            pacientes.add(paciente);
+        }
+    }
     
     
     public void  ModificarPaciente(int Rut){
