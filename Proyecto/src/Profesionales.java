@@ -2,9 +2,9 @@
 import java.util.ArrayList;
 
 public class Profesionales {
-    private String nombre; //coresponde al nombre del profesional
-    private int rut; //corresponde al rut del profesional para poder identificarlo como persona individual
-    private String especialidad; // se le asigna un codigo de especialidad según corresponda
+    private String Nombre; //coresponde al nombre del profesional
+    private int Rut; //corresponde al rut del profesional para poder identificarlo como persona individual
+    private String Especialidad; // se le asigna un codigo de especialidad según corresponda
     private ArrayList agenda; // agenda trabaja con codigos del 1 al 6 representando los días de la semana, esto para tener una idea de los días disponibles del profesional
     private double horario; // el horario muestra la última hora disponible del profesional, se considera que el horaio de inicio de atención es desde las 8am.
     private Profesionales profesional;
@@ -17,19 +17,19 @@ public class Profesionales {
     }
     
     
-    public Profesionales() {
-        this.nombre = "";
-        this.rut = 0;
-        especialidad = "";
+    public Profesionales(String Nombre, int Rut,int Telefono, ArrayList agenda, double horario, Profesionales profesionaels ){
+        this.Nombre = Nombre;
+        this.Rut = Rut;
         this.agenda = new ArrayList();
         this.horario = 0;
         this.profesionales = new ArrayList <>();  
     }   
+     
     
     public void mostrarProfesionales(Profesionales Dato){   
-        System.out.println("Nombre: "+Dato.nombre);
-        System.out.println("Rut: "+Dato.rut);
-        System.out.println("Especialidad: "+Dato.especialidad);
+        System.out.println("Nombre: "+Dato.Nombre);
+        System.out.println("Rut: "+Dato.Rut);
+        System.out.println("Especialidad: "+Dato.Especialidad);
         System.out.println("Horario: "+Dato.horario);
     }    
     
@@ -39,7 +39,7 @@ public class Profesionales {
     public void buscarEspecialidad(String codigo){
         for (int i= 0; i>= profesionales.size(); i++){         
             if ( profesionales.get(i).getEspecialidad().equals(codigo)){
-                System.out.println("El profesional "+ profesionales.get(i).nombre + "Cuenta con los siguientes días de atención disponible: " );             
+                System.out.println("El profesional "+ profesionales.get(i).Nombre + "Cuenta con los siguientes días de atención disponible: " );             
                 System.out.println (profesionales.get(i).agenda);
             }
         }
@@ -53,31 +53,31 @@ public class Profesionales {
     
     //Accesores y mutadores - getter y setters
     public String getNombre(){
-        return nombre;
+        return Nombre;
     }
     
     public int getRut(){
-        return rut;
+        return Rut;
     }
     
     public String getEspecialidad(){
-        return especialidad;
+        return Especialidad;
     }
     
-    public void setNombre(String nombre){
-        nombre=nombre;
+    public void setNombre(String Nombre){
+        Nombre=Nombre;
     }
     
     public void setApellido(String apellido){
         apellido=apellido;
     }
     
-    public void setRut(int rut){
-        rut=rut;
+    public void setRut(int Rut){
+        Rut=Rut;
     }
     
-    public void setEspecialidad(String especialidad){
-        especialidad=especialidad;
+    public void setEspecialidad(String Especialidad){
+        Especialidad=Especialidad;
     }
 
     public ArrayList getProfresionales() {
