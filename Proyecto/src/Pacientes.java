@@ -10,6 +10,7 @@ public class Pacientes {
     
     
     private ArrayList <Pacientes> pacientes;
+    
     private String Nombre;
     private int Rut;
     private Date fechaNacimiento;
@@ -17,11 +18,7 @@ public class Pacientes {
     private String Correo;
 
     public Pacientes() {
-        this.pacientes = new ArrayList<>();
-        Nombre = "";
-        Rut = 0;
-        Telefono = 0;
-        Correo = "";
+       pacientes = new ArrayList<Pacientes>();
     }
     
 
@@ -100,6 +97,11 @@ public class Pacientes {
         }
     }
     
+    public void ImprimirDatos(){
+        for(int i=0; i<pacientes.size();i++){
+            System.out.println(pacientes.get(i).getNombre());
+        }
+    }
     
     public void  ModificarPaciente(int Rut){
         System.out.println("Modificar Paciente"+ Rut); 
