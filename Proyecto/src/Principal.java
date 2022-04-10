@@ -54,10 +54,9 @@ public class Principal {
 
                 case 5:
                     pacientes.eliminarHora();
-                    pacientes.mostrarHora();
                     break;
                 case 6:
-                    pacientes.cambiarHora();
+                    pacientes.mostrarHora();
 
                     break;
                 case 7:
