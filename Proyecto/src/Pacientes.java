@@ -8,146 +8,29 @@ public class Pacientes {
     
     public Validaciones validaciones = new Validaciones();
     
-    
     private ArrayList <Pacientes> pacientes;
-    
-    private String Nombre;
-    private int Rut;
+    private String nombre;
+    private int rut;
     private Date fechaNacimiento;
-    private int Telefono;
-    private String Correo;
-
-    public Pacientes() {
-       pacientes = new ArrayList<Pacientes>();
-    }
-    
+    private int telefono;
+    private String correo;
 
     //constructores
-    public Pacientes(String nombre, int rut, int telefono, String correo){
-        
-    }
     
+    public Pacientes() {
+        pacientes = new ArrayList<>();
+    }
+        
     public Pacientes(String nombre, int rut, Date fecha, int telefono, String correo){
-        this.Nombre=nombre;
-        this.Rut=rut;
+        this.nombre=nombre;
+        this.rut=rut;
         this.fechaNacimiento=fecha;
-        this.Telefono=telefono;
-        this.Correo=correo;  
-    }
-   
-    //Metodos
-    
-    
-    //busca entre el listado de los pacientes si existe coincidencia con el rut ingresado
-    //si lo encuentra retorna true para evitar crear un paciente duplicado
-    public boolean buscarPaciente(int rut){
-        for(int i = 0; i < pacientes.size(); i++){
-            if(pacientes.get(i).getRut()==(rut)){
-                return true;
-            }
-        }return false;   
-    }
-    
-    
-    public void AgregarPaciente() throws ParseException{
-        String nombre;
-        int rut;
-        String fecha;
-        int telefono;
-        String correo;
-        int cedula;
-        
-        Scanner Entrada = new Scanner(System.in);
-        System.out.println("Agregando Paciente, a continuacion ingrese sus datos"); 
-        
-        System.out.println("Ingrese su nombre completo");
-        nombre=Entrada.next();
-        
-        System.out.println("Ingrese su RUT");
-        rut=Entrada.nextInt();
-        
-        System.out.println("Ingrese su fecha de nacimiento en formato dd/mm/yy");
-        fecha=Entrada.next();
-        
-        System.out.println("Ingrese su telefono");
-        telefono=Entrada.nextInt();
-        
-        System.out.println("Ingrese su correo electronico");
-        correo=Entrada.next();
-        
-        Date FFecha=new SimpleDateFormat("dd/mm/yyyy").parse(fecha);
-        
-        Pacientes paciente = new Pacientes(nombre,rut,FFecha,telefono,correo);
-        paciente.add(paciente);
-        System.out.println("Se ha ingresado un nuevo paciente con exito!");
-        
-        cedula=validaciones.validar();
-   
-    }
-       
-     public void comprobarSiEstaRegistrado(int rut){
- 
-        for(int i=0; i<pacientes.size();i++){
-            if(pacientes.get(i).Rut==rut){
-                System.out.println("El paciente ya se encontraba registrado en el sistema");
-                profesional.registrarHora();
-            }
-            Pacientes pacientes = new Pacientes();
-            pacientes.AgregarPaciente();
-        }
-    }
-    
-    public void ImprimirDatos(){
-        for(int i=0; i<pacientes.size();i++){
-            System.out.println(pacientes.get(i).getNombre());
-        }
-    }
-    
-    public void  ModificarPaciente(int Rut){
-        System.out.println("Modificar Paciente"+ Rut); 
-    }
-    
-    public void EliminarPaciente(int Rut){
-        System.out.println("Ingrese Rut que desea eliminar");
-        int cedula=validaciones.validar();
-        int i;
-        
-        for(i=0; i<pacientes.size(); i++){
-            if(cedula==pacientes.get(i).Rut){
-                pacientes.remove(i);
-                System.out.println("Se ha eliminado el rut del paciente");
-            }
-        }
+        this.telefono=telefono;
+        this.correo=correo;  
     }
 
     
-
-
-    boolean buscarPaciente(String RutPaciente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    Pacientes RutPaciente(String toString) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private boolean BuscarPaciente(int cedula) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    public void mostrarHora(){
-        System.out.println("Su hora de atención está registrada para " + reserva);
-    }
-    public void cambiarHora(){
-        System.out.println("A continuacion se cambiaran los datos de su cita medica");
-    }
-    public void eliminarHora(){
-        System.out.println("Hora eliminada");
-    }
-    
-    
-    
-     //getters y setters
+//getters y setters
 
     public ArrayList<Pacientes> getPacientes() {
         return pacientes;
@@ -173,11 +56,11 @@ public class Pacientes {
         this.rut = rut;
     }
 
-    public int getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(int fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -196,24 +79,123 @@ public class Pacientes {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-
-    public String getReserva() {
-        return reserva;
-    }
-
-    public void setReserva(String reserva) {
-        this.reserva = reserva;
-    }
-
-    public static Profesionales getProfesional() {
-        return profesional;
-    }
-
-    public static void setProfesional(Profesionales profesional) {
-        Pacientes.profesional = profesional;
+ 
+    
+    //Metodos
+    
+    Scanner Entrada = new Scanner(System.in);
+    //busca entre el listado de los pacientes si existe coincidencia con el rut ingresado
+    //si lo encuentra retorna true para evitar crear un paciente duplicado
+    public boolean buscarPaciente(int rut){
+        for(int i = 0; i < pacientes.size(); i++){
+            if(pacientes.get(i).getRut()==(rut)){
+                return true;
+            }
+        }return false;   
     }
     
+    public void AgregarPaciente() throws ParseException{
+        String Fecha;
+        
+        System.out.println("*** Agregando Paciente, a continuacion ingrese sus datos ***"); 
+        
+        System.out.println("Ingrese su nombre completo");
+        this.nombre=Entrada.next();
+        
+        System.out.println("Ingrese su RUT sin puntos ni guion");
+        this.rut=Entrada.nextInt();
+        //Rut=validaciones.Validar();
+        
+        System.out.println("Ingrese su fecha de nacimiento en formato dd/mm/yy");
+        Fecha=Entrada.next();
+        
+        System.out.println("Ingrese su telefono");
+        this.telefono=Entrada.nextInt();
+        
+        System.out.println("Ingrese su correo electronico");
+        this.correo=Entrada.next();
+        
+        Date FFecha=new SimpleDateFormat("dd/mm/yyyy").parse(Fecha);
+        
+        Pacientes paciente = new Pacientes(nombre,rut,FFecha,telefono,correo);
+        pacientes.add(paciente);
+        
+        System.out.println("*** Se ha ingresado un nuevo paciente con exito! ***");
+    }
+       
+     public void comprobarSiEstaRegistrado(int rut) throws ParseException{
+        if (pacientes.isEmpty()){
+            System.out.println("Cree nuevo paciente");
+            Pacientes pacientess = new Pacientes();
+            pacientess.AgregarPaciente();
+        }
+         
+        for(int i=0; i<pacientes.size();i++){
+            if(pacientes.get(i).rut==rut){
+                System.out.println("El paciente ya se encontraba registrado en el sistema");
+        //        profesional.registrarHora();
+            }
+            else{
+            System.out.println("Cree nuevo paciente");
+            Pacientes pacientess = new Pacientes();
+            pacientess.AgregarPaciente();
+            }
+        }
+    }
     
+    public void  ModificarPaciente(int rut){
+        System.out.println("Modificar Paciente"+ rut); 
+    }
     
+    public void EliminarPaciente(int rut){
+        System.out.println("Ingrese Rut que desea eliminar");
+        int cedula=validaciones.Validar();
+        int i;
+        
+        for(i=0; i<pacientes.size(); i++){
+            if(cedula==pacientes.get(i).rut){
+                pacientes.remove(i);
+                System.out.println("Se ha eliminado el rut del paciente");
+            }
+        }
+    }
+
+    boolean buscarPaciente(String RutPaciente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    Pacientes RutPaciente(String toString) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private boolean BuscarPaciente(int cedula) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void mostrarHora(){
+        System.out.println("Su hora de atención está registrada para " );
+    }
+    
+    public void cambiarHora(){
+        System.out.println("A continuacion se cambiaran los datos de su cita medica");
+    }
+    
+    public void eliminarHora(){
+        System.out.println("Hora eliminada");
+    }
+    
+    public void mostrarPacientes(){   
+        for(int i=0; i<pacientes.size();i++){
+        System.out.println("******************************");
+        System.out.println("Nombre: "+pacientes.get(i).nombre);
+        System.out.println("Rut: "+pacientes.get(i).rut);
+        System.out.println("Fecha de Nacimiento: "+pacientes.get(i).fechaNacimiento);
+        System.out.println("Telefono: "+pacientes.get(i).telefono);
+        System.out.println("Correo: "+pacientes.get(i).correo);
+        System.out.println("******************************");
+        }
+    }   
+    
+
 }
 
