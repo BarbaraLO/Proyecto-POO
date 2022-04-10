@@ -10,6 +10,7 @@ public class Pacientes {
     
     private ArrayList <Pacientes> pacientes;
     private String nombre;
+    private String apellido;
     private int rut;
     private Date fechaNacimiento;
     private int telefono;
@@ -21,8 +22,9 @@ public class Pacientes {
         pacientes = new ArrayList<>();
     }
         
-    public Pacientes(String nombre, int rut, Date fecha, int telefono, String correo){
+    public Pacientes(String nombre, String apellido, int rut, Date fecha, int telefono, String correo){
         this.nombre=nombre;
+        this.apellido=apellido;
         this.rut=rut;
         this.fechaNacimiento=fecha;
         this.telefono=telefono;
@@ -47,7 +49,15 @@ public class Pacientes {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    public String getApellido() {
+        return apellido;
+    }
 
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+    
     public int getRut() {
         return rut;
     }
@@ -99,8 +109,11 @@ public class Pacientes {
         
         System.out.println("*** Agregando Paciente, a continuacion ingrese sus datos ***"); 
         
-        System.out.println("Ingrese su nombre completo");
+        System.out.println("Ingrese su nombre");
         this.nombre=Entrada.next();
+        
+        System.out.println("Ingrese su apellido");
+        this.apellido=Entrada.next();
         
         System.out.println("Ingrese su RUT sin puntos ni guion");
         this.rut=Entrada.nextInt();
@@ -117,7 +130,7 @@ public class Pacientes {
         
         Date FFecha=new SimpleDateFormat("dd/mm/yyyy").parse(Fecha);
         
-        Pacientes paciente = new Pacientes(nombre,rut,FFecha,telefono,correo);
+        Pacientes paciente = new Pacientes(nombre, apellido, rut,FFecha,telefono,correo);
         pacientes.add(paciente);
         
         System.out.println("*** Se ha ingresado un nuevo paciente con exito! ***");
@@ -188,6 +201,7 @@ public class Pacientes {
         for(int i=0; i<pacientes.size();i++){
         System.out.println("******************************");
         System.out.println("Nombre: "+pacientes.get(i).nombre);
+        System.out.println("Apelido: "+pacientes.get(i).apellido);
         System.out.println("Rut: "+pacientes.get(i).rut);
         System.out.println("Fecha de Nacimiento: "+pacientes.get(i).fechaNacimiento);
         System.out.println("Telefono: "+pacientes.get(i).telefono);
