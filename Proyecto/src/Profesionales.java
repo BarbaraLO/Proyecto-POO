@@ -138,7 +138,7 @@ public class Profesionales {
 
     public void mostrarAgenda(int i){
         int hora= 0;
-        System.out.println("lA AGENDA DISPONIBLE ES: ... ... .. .. .. . . .");
+        System.out.println("LA AGENDA DISPONIBLE ES: ... ... .. .. .. . . .");
         System.out.println("SELECCIONE UN DIA Y UNA HORA EN EL SIGUIENTE FORMATO DD/MM/AAAA");//dia con dos digitos, mes con dos digitos y año 
             System.out.println(profesionales.get(i).getAgenda());
             hora = Entrada.nextInt();
@@ -161,10 +161,12 @@ public class Profesionales {
     
     public void mostrarProfesionales(){   
         for(int i=0; i<profesionales.size();i++){
+        System.out.println("******************************");
         System.out.println("Nombre: "+profesionales.get(i).nombre);
         System.out.println("Rut: "+profesionales.get(i).rut);
         System.out.println("Especialidad: "+profesionales.get(i).especialidad);
-        System.out.println("Horario: "+profesionales.get(i).horario);  
+        System.out.println("Horario: "+profesionales.get(i).horario);
+        System.out.println("******************************");
         }
     }   
     
