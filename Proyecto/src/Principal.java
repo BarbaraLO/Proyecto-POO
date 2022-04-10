@@ -27,7 +27,7 @@ public class Principal {
             System.out.println("3- Mostrar listado especialidades");
             System.out.println("4- Mostrar listado de profesionales");
             System.out.println("5- Reserva hora");
-            System.out.println("6- Salir")
+            System.out.println("6- Salir");
     //        System.out.println("7- Mostrar hora del paciente ");
     //        System.out.println("8- Eliminar Hora");
     //        System.out.println("9- Cambiar Hora");
