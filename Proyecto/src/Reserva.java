@@ -62,8 +62,6 @@ public class Reserva {
         
         if(paciente.buscarPaciente(RutPaciente)== true){
             
-          //  paciente = paciente.RutPaciente(RutPaciente);
-            
             System.out.println("DATOS PACIENTE");
             System.out.println("Nombre :"+paciente.getNombre());
             System.out.println("Rut :"+paciente.getRut());
@@ -73,7 +71,7 @@ public class Reserva {
             System.out.println("Ingrese ID de la reserva");
             ID=Entrada.nextInt();
             
-            System.out.println("Ingrese rut del paciente ");
+            System.out.println("Ingrese fecha de reserva:");
             fecha=Entrada.next();
             
             Date FFecha=new SimpleDateFormat("dd/mm/yyyy").parse(fecha);
@@ -81,15 +79,19 @@ public class Reserva {
             Reserva reservas = new Reserva(ID,paciente.getPacientes(),FFecha);
             LReserva.add(reservas);
             
-            System.out.println("Reserva creada");
+            System.out.println("*** Reserva creada ***");
         }  
     }
     
     public void ImprimirDatos(){
         for(int i=0; i<LReserva.size(); i++){
+            System.out.println("******************************");
             System.out.println("Nombre:"+LReserva.get(i).LPacientes.get(i).getNombre());
             System.out.println("Cedula de Identidad:"+LReserva.get(i).LPacientes.get(i).getRut());
-            System.out.println("Telefono:"+LReserva.get(i).LPacientes.get(i).getTelefono());
+            System.out.println("Telefono:"+LReserva.get(i).LPacientes.get(i).getTelefono());     
+            System.out.println("Hora reservada:"+LReserva.get(i).getFecha());
+            System.out.println("Codigo de reserva:"+LReserva.get(i).getCodigoReserva());
+            System.out.println("******************************");
         }
     }
 }
