@@ -13,7 +13,8 @@ public class Principal {
 
     public static Pacientes pacientes = new Pacientes();
     public static Profesionales profesionales = new Profesionales();
-
+    public static Reserva reservas = new Reserva();
+    
     public static void main(String[] args) throws ParseException {
         Scanner Entrada;
         int opcion;
@@ -28,7 +29,8 @@ public class Principal {
             System.out.println("5- Mostrar hora del paciente");
             System.out.println("6- Cambiar hora");
             System.out.println("7- Eliminar hora");
-            System.out.println("8- Salir");
+            System.out.println("8- Reserva hora");
+            System.out.println("9- Salir");
             System.out.println("____________________________");
 
             Entrada = new Scanner(System.in);
@@ -63,12 +65,15 @@ public class Principal {
                     
                 case 7:
                     pacientes.eliminarHora();
-
+                    
+                case 8:
+                    reservas.InsertarDatos(pacientes);
+                    reservas.ImprimirDatos();  
                     break; 
             
             }
 
-        } while (opcion != 8);
+        } while (opcion != 9);
     }
 
 }
