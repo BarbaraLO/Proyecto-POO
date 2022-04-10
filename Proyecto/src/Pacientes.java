@@ -173,18 +173,7 @@ public class Pacientes {
         }
     }
 
-    boolean buscarPaciente(String RutPaciente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    Pacientes RutPaciente(String toString) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private boolean BuscarPaciente(int cedula) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+   
     public void mostrarHora(){
         System.out.println("Su hora de atención está registrada para " );
     }
