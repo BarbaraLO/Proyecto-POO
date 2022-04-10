@@ -53,16 +53,19 @@ public class Principal {
                     break;
 
                 case 5:
-                    pacientes.eliminarHora();
-                    break;
-                case 6:
                     pacientes.mostrarHora();
-
                     break;
-                case 7:
+                    
+                case 6:
                     pacientes.cambiarHora();
 
-                    break;                    
+                    break;
+                    
+                case 7:
+                    pacientes.eliminarHora();
+
+                    break; 
+            
             }
 
         } while (opcion != 8);
