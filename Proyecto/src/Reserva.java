@@ -18,26 +18,23 @@ import java.util.Scanner;
 public class Reserva {
     
     private int CodigoReserva;
-    private Pacientes PPacientes;
     private Date Fecha;
-    private final ArrayList<Reserva> LReserva = new ArrayList<>();
+    private ArrayList<Reserva> LReserva = new ArrayList<>();
+    private ArrayList <Pacientes> LPacientes = new  ArrayList <>();
     
     public Reserva(){
-        
+        LReserva = new ArrayList<>();
     }
-    
-    public Reserva(int CodigoReserva, Pacientes PPacientes, Date Fecha){
+
+    public Reserva(int CodigoReserva, ArrayList<Pacientes> pacientes, Date Fecha) {
         this.CodigoReserva= CodigoReserva;
-        this.PPacientes=PPacientes;
+       // this.PPacientes=PPacientes;
+        this.LPacientes=pacientes;
         this.Fecha=Fecha;
     }
-
+    
     public int getCodigoReserva() {
         return CodigoReserva;
-    }
-
-    public Pacientes getPPacientes() {
-        return PPacientes;
     }
 
     public Date getFecha() {
@@ -48,10 +45,6 @@ public class Reserva {
         this.CodigoReserva = CodigoReserva;
     }
 
-    public void setPPacientes(Pacientes PPacientes) {
-        this.PPacientes = PPacientes;
-    }
-
     public void setFecha(Date Fecha) {
         this.Fecha = Fecha;
     }
@@ -60,15 +53,16 @@ public class Reserva {
         
         int ID;
         String fecha;
-        String RutPaciente;
+        int RutPaciente;
         
         Scanner Entrada = new Scanner(System.in);
-        System.out.println("Ingrese rut del paciente");
-        RutPaciente= Entrada.next();
         
-        if(paciente.buscarPaciente(RutPaciente)){
+        System.out.println("Ingrese rut del paciente");
+        RutPaciente= Entrada.nextInt();
+        
+        if(paciente.buscarPaciente(RutPaciente)== true){
             
-            paciente= paciente.RutPaciente(RutPaciente);
+          //  paciente = paciente.RutPaciente(RutPaciente);
             
             System.out.println("DATOS PACIENTE");
             System.out.println("Nombre :"+paciente.getNombre());
@@ -83,19 +77,19 @@ public class Reserva {
             fecha=Entrada.next();
             
             Date FFecha=new SimpleDateFormat("dd/mm/yyyy").parse(fecha);
-            Reserva reservas = new Reserva(ID,paciente,FFecha);
+            
+            Reserva reservas = new Reserva(ID,paciente.getPacientes(),FFecha);
             LReserva.add(reservas);
             
             System.out.println("Reserva creada");
-        }
-        
-        
+        }  
     }
     
     public void ImprimirDatos(){
-        int i;
-        for(i=0; i<LReserva.size(); i++){
-            System.out.println("Nombre:"+LReserva.get(i).PPacientes.getNombre()+"\nCedula de Identidad"+LReserva.get(i).PPacientes.getRut()+"\n"+" Telefono"+LReserva.get(i).PPacientes.getTelefono());
+        for(int i=0; i<LReserva.size(); i++){
+            System.out.println("Nombre:"+LReserva.get(i).LPacientes.get(i).getNombre());
+            System.out.println("Cedula de Identidad:"+LReserva.get(i).LPacientes.get(i).getRut());
+            System.out.println("Telefono:"+LReserva.get(i).LPacientes.get(i).getTelefono());
         }
     }
 }
