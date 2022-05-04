@@ -27,15 +27,15 @@ public class Principal {
             System.out.println("3- Mostrar listado especialidades");
             System.out.println("4- Mostrar listado de profesionales");
             System.out.println("5- Reserva hora");
-            System.out.println("6- Salir");
-    //        System.out.println("7- Mostrar hora del paciente ");
-    //        System.out.println("8- Eliminar Hora");
+            System.out.println("6- Modificar Paciente");
+            System.out.println("7- Eliminar Paciente ");
+            System.out.println("8- Salir");
     //        System.out.println("9- Cambiar Hora");
             System.out.println("____________________________");
 
             Entrada = new Scanner(System.in);
             opcion = Entrada.nextInt();
-
+            
             switch (opcion) {
                 case 1:
                     pacientes.AgregarPaciente();
@@ -59,20 +59,20 @@ public class Principal {
                    reservas.ImprimirDatos();
                     break;
                     
-/*                case 6:
-                    pacientes.mostrarHora();
+                case 6:
+                    pacientes.ModificarPaciente(pacientes);
                     break;
                     
                 case 7:
-                    pacientes.eliminarHora();
-                    
+                   pacientes.EliminarPaciente(pacientes);
+/*                    
                 case 8:;
                 pacientes.cambiarHora()
                     break; 
  */           
             }
 
-        } while (opcion != 6);
+        } while (opcion != 8);
     }
 
 }
