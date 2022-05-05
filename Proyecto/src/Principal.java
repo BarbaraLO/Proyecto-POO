@@ -20,17 +20,18 @@ public class Principal {
         int opcion;
         do {
             System.out.println("____________________________");
-            System.out.println("Ingrese una opcion");
+            System.out.println("INGRESE UNA OPCION:");
             System.out.println("____________________________");
             System.out.println("1- Registrar paciente");
-            System.out.println("2- Mostrar listado de pacientes");
-            System.out.println("3- Mostrar listado especialidades");
-            System.out.println("4- Mostrar listado de profesionales");
-            System.out.println("5- Reserva hora");
-            System.out.println("6- Modificar Paciente");
-            System.out.println("7- Eliminar Paciente ");
-            System.out.println("8- Salir");
-    //        System.out.println("9- Cambiar Hora");
+            System.out.println("2- Modificar Paciente");
+            System.out.println("3- Eliminar Paciente");
+            System.out.println("4- Mostrar listado de pacientes");
+            System.out.println("5- Mostrar listado de profesionales y especialidad");
+            System.out.println("6- Reservar hora");
+            System.out.println("7- Modificar Reserva");
+            System.out.println("8- Eliminar reserva");
+            System.out.println("9- Mostrar reservas");
+            System.out.println("0- Salir");
             System.out.println("____________________________");
 
             Entrada = new Scanner(System.in);
@@ -42,37 +43,41 @@ public class Principal {
                     break;
 
                 case 2:
-                    pacientes.mostrarPacientes();
+                    pacientes.ModificarPaciente(pacientes);
                     break;
 
                 case 3:
-                    profesionales.mostrar();
+                    pacientes.EliminarPaciente(pacientes);
                     break;
 
                 case 4:
-                    profesionales.DatosProfesionales();
-                    profesionales.mostrarProfesionales();
+                    pacientes.mostrarPacientes();
                     break;
 
                 case 5:
-                   reservas.InsertarDatos(pacientes);
-                   reservas.ImprimirDatos();
+                    profesionales.mostrar();
+                    profesionales.DatosProfesionales();
+                    profesionales.mostrarProfesionales();
                     break;
                     
                 case 6:
-                    pacientes.ModificarPaciente(pacientes);
+                    reservas.InsertarDatos(pacientes);
                     break;
                     
                 case 7:
-                   pacientes.EliminarPaciente(pacientes);
-/*                    
-                case 8:;
-                pacientes.cambiarHora()
-                    break; 
- */           
+                    reservas.ModificarReserva();
+                    break;
+                    
+                case 8:
+                    reservas.EliminarReserva();
+                    break;
+                    
+                case 9:
+                    reservas.ImprimirDatos();
+                    break;
             }
 
-        } while (opcion != 8);
+        } while (opcion != 0);
     }
 
 }

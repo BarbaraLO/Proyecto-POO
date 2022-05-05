@@ -164,7 +164,6 @@ public class Pacientes {
         RutPaciente = Entrada.nextInt();
         for(int i = 0; i < pacientes.size(); i++){
             if(pacientes.get(i).getRut()==(RutPaciente)){
-            System.out.println("PACIENTE ENCONTRADO EN MODIFICAR");
             do {
                 System.out.println("____________________________");
                 System.out.println("Ingrese una opcion");
@@ -181,59 +180,54 @@ public class Pacientes {
                         System.out.println("Ingrese nombre modificado");
                         texto = Entrada.next();
                         paciente.setNombre(pacientes.get(i).nombre = texto);
+                        System.out.println("NOMBRE MODIFICADO CON EXITO");
                         break;
 
                     case 2:
                         System.out.println("Ingrese apellido modificado");
                         texto = Entrada.next();
                         paciente.setApellido(pacientes.get(i).apellido = texto);
+                        System.out.println("APELLIDO MODIFICADO CON EXITO");
                         break;
 
                     case 3:                      
                         System.out.println("Ingrese telefono modificado");
                         numero = Entrada.nextInt();
                         paciente.setTelefono(pacientes.get(i).telefono = numero);
+                        System.out.println("TELEFONO MODIFICADO CON EXITO");
                         break;
 
                     case 4:
                         System.out.println("Ingrese correo modificado");
                         texto = Entrada.next();
                         paciente.setCorreo(pacientes.get(i).correo = texto);
+                        System.out.println("CORREO MODIFICADO CON EXITO");
                         break; 
-                }
-            } while (opcion != 5);
+                    }
+                } while (opcion != 5);
+            }
         }
     }
-    }
-
-    
+  
     public void EliminarPaciente(Pacientes paciente){
         int RutPaciente;
-        int opcion, numero;
-        String texto;
        
         System.out.println("Ingrese RUT del paciente sin puntos ni guion");
         RutPaciente = Entrada.nextInt();
         for(int i = 0; i < pacientes.size(); i++){
             if(pacientes.get(i).getRut()==(RutPaciente)){        
                 pacientes.remove(i);
+                System.out.println("**************************");
+                System.out.println("*** Paciente eliminado ***");
+                System.out.println("**************************");
             }   
         }
     }
-   
-    public void mostrarHora(){
-        System.out.println("Su hora de atención está registrada para " );
-    }
     
-    public void cambiarHora(){
-        System.out.println("A continuacion se cambiaran los datos de su cita medica");
-    }
-    
-    public void eliminarHora(){
-        System.out.println("Hora eliminada");
-    }
-    
-    public void mostrarPacientes(){   
+    public void mostrarPacientes(){
+        if (pacientes.isEmpty())
+            System.out.println("*** NO SE ENCUENTRAN PACIENTES REGISTRADOS ***");
+        else
         for(int i=0; i<pacientes.size();i++){
         System.out.println("******************************");
         System.out.println("Nombre: "+pacientes.get(i).nombre);

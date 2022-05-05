@@ -14,7 +14,6 @@ public class Profesionales {
     Scanner Entrada = new Scanner(System.in);
     
     //constructores
-    
     public Profesionales() {
 
         this.nombre = "";
@@ -42,7 +41,6 @@ public class Profesionales {
   
     
     //Accesores y mutadores - getter y setters
-    
     public String getNombre() {
         return nombre;
     }
@@ -95,9 +93,6 @@ public class Profesionales {
     
     
     //Metodos
-    
-    //Este metodo busca en el arreglo de profesionales a cada profesional que cuente con el codigo 
-    //de especialidad requerido y muetra los días disponibles que tiene para atender
     public void buscarEspecialidad(int codigo) {
         for (int i = 0; i >= profesionales.size(); i++) {
             if (profesionales.get(i).getEspecialidad()==(codigo)) {
@@ -138,7 +133,7 @@ public class Profesionales {
 
     public void mostrarAgenda(int i){
         int hora= 0;
-        System.out.println("LA AGENDA DISPONIBLE ES: ... ... .. .. .. . . .");
+        System.out.println("lA AGENDA DISPONIBLE ES: ... ... .. .. .. . . .");
         System.out.println("SELECCIONE UN DIA Y UNA HORA EN EL SIGUIENTE FORMATO DD/MM/AAAA");//dia con dos digitos, mes con dos digitos y año 
             System.out.println(profesionales.get(i).getAgenda());
             hora = Entrada.nextInt();
