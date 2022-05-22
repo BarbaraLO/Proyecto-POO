@@ -51,7 +51,7 @@ public class Principal {
                     break;
 
                 case 4:
-                    pacientes.mostrarPacientes();
+                    pacientes.mostrar();
                     break;
 
                 case 5:
