@@ -102,6 +102,30 @@ public class Pacientes extends Persona {
         }return false;   
     }
     
+    //busca mediante el rut si el paciente se encuentra registrado
+    public boolean buscar(){
+        int rutPaciente;
+        System.out.println("Ingrese RUT del paciente sin puntos ni guion");
+        rutPaciente=Entrada.nextInt();
+        
+        for(int i=0; i<pacientes.size(); i++){
+            if(pacientes.get(i).getRut()==rutPaciente){
+                System.out.println("Paciente encontrado");
+                System.out.println("*** DATOS PACIENTE ***");
+                System.out.println("Nombre :"+getNombre());
+                System.out.println("Apellido :"+getApellido());
+                System.out.println("Rut :"+getRut());
+                System.out.println("Telefono:"+getTelefono());
+                System.out.println("Correo :"+getCorreo());
+                return true;
+            }
+        }
+        System.out.println("Paciente no encontrado!!!");
+        return false;
+    }
+    
+    
+    
     public void AgregarPaciente() throws ParseException{
         String Fecha;
         
