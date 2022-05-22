@@ -3,15 +3,19 @@ import java.util.Scanner;
 
 
 /**
- *
- * @author naomi
+ * Clase que permite realizar validaciones de datos ingresados.
+ * @author Naomi Contreras
+ * @author Barbara Leiva
  */
 public class Validaciones {
     
     
     public Scanner Entrada=new Scanner(System.in);
     
-    //Valida que sea numero entero
+    /**
+     * Valida que el numero sea de tipo entero.
+     * @return Cadena de numeros.
+     */
     public int Validar(){
        int cadenaNumeros=-1;
        do{
@@ -29,7 +33,11 @@ public class Validaciones {
     }        
     
     
-    //Valida que sea una cadena de texto
+    /**
+     * Valida que los caracteres sean una cadena de texto.
+     * @param cadenaTexto caracteres ingresados.
+     * @return Cadena de texto.
+     */
     public String Validar(String cadenaTexto){
       String Cadena=null;
       do{

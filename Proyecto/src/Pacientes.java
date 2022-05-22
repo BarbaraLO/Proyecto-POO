@@ -4,7 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Pacientes extends Persona {
+
+/**
+ * Clase hija de Clase Persona, contiene información sobre el paciente y metodos relacionados; Implementa interface Datos.
+ * @author Naomi Contreras
+ * @author Barbara Leiva
+ */
+public class Pacientes extends Persona implements Datos {
     
     public Validaciones validaciones = new Validaciones();
     
@@ -15,12 +21,20 @@ public class Pacientes extends Persona {
     private Date fechaNacimiento;
     private int telefono;
     private String correo;
-
-    //constructores
+ 
     public Pacientes() {
         pacientes = new ArrayList<>();
     }
-        
+    
+    /**
+     * Constructor.
+     * @param nombre nombre del paciente.
+     * @param apellido apellido del paciente.
+     * @param rut numero de identificación del paciente.
+     * @param fecha fecha de nacimiento del paciente.
+     * @param telefono numero de telefono del paciente
+     * @param correo correo electronico del paciente
+     */
     public Pacientes(String nombre, String apellido, int rut, Date fecha, int telefono, String correo){
         this.nombre=nombre;
         this.apellido=apellido;
@@ -32,68 +46,129 @@ public class Pacientes extends Persona {
 
     
 //getters y setters
-
+    /**
+     * Permite obtener valores de lista de pacientes
+     * @return Lista de pacientes.
+     */
     public ArrayList<Pacientes> getPacientes() {
         return pacientes;
     }
-
+    
+    /**
+     * Permite fijar valores a lista de pacientes
+     * @param pacientes Lista de pacientes.
+     */
     public void setPacientes(ArrayList<Pacientes> pacientes) {
         this.pacientes = pacientes;
     }
-
+    
+    /**
+     * Permite obtener valor de atributo nombre
+     * @return nombre del paciente.
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Permite fijar valores del atributo nombre
+     * @param nombre nombre del paciente.
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
+    /**
+     * Permite obtener valor de atributo apellido
+     * @return apellido del paciente.
+     */
+    
     public String getApellido() {
         return apellido;
     }
 
+    /**
+     * Permite fijar valores del atributo apellido
+     * @param apellido apellido del paciente.
+     */
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
         
+    /**
+     * Permite obtener valor de atributo rut
+     * @return rut del paciente.
+     */
     public int getRut() {
         return rut;
     }
-
+    
+    /**
+     * Permite fijar valores del atributo rut
+     * @param rut rut del paciente.
+     */
     public void setRut(int rut) {
         this.rut = rut;
     }
 
+    /**
+     * Permite obtener valor de atributo FechaNacimiento
+     * @return fecha de nacimiento del paciente.
+     */
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
+    /**
+     * Permite fijar valores del atributo FechaNacimiento
+     * @param fechaNacimiento fecha de nacimiento del paciente.
+     */
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    /**
+     * Permite obtener valor de atributo telefono
+     * @return numero de telefono del paciente.
+     */
     public int getTelefono() {
         return telefono;
     }
-
+    
+    /**
+     * Permite fijar valores del atributo telefono
+     * @param telefono numero de telefono del paciente.
+     */
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
+    /**
+     * Permite obtener valor de atributo correo
+     * @return correo electronico del paciente
+     */
     public String getCorreo() {
         return correo;
     }
-
+    
+    /**
+     * Permite fijar valores del atributo correo
+     * @param correo correo electronico del paciente
+     */
     public void setCorreo(String correo) {
         this.correo = correo;
     }
  
     
-    //Metodos
     Scanner Entrada = new Scanner(System.in);
-    //busca entre el listado de los pacientes si existe coincidencia con el rut ingresado
-    //si lo encuentra retorna true para evitar crear un paciente duplicado
+    
+    //Metodos
+    
+    /**
+     * Busca en el Listado de pacientes si el rut del paciente buscado se encuentra registrado.
+     * @param rut numero de identificación del paciente que será buscado.
+     * @return devuelve 'true' (verdadero) si encuentra el rut y 'false' (falso) si no lo hace.
+     */
     public boolean buscarPaciente(int rut){
         for(int i = 0; i < pacientes.size(); i++){
             if(pacientes.get(i).getRut()==(rut)){
@@ -102,7 +177,12 @@ public class Pacientes extends Persona {
         }return false;   
     }
     
+
     //busca mediante el rut si el paciente se encuentra registrado
+    /**
+     * Busca paciente mediante su rut y muestra sus datos.
+     * @return devuelve 'true' (verdadero) si encuentra el paciente y 'false' (falso) si no lo hace.
+     */
     public boolean buscar(){
         int rutPaciente;
         System.out.println("Ingrese RUT del paciente sin puntos ni guion");
@@ -125,7 +205,10 @@ public class Pacientes extends Persona {
     }
     
     
-    
+    /**
+     * Agrega un nuevo paciente al Listado de pacientes e ingresa sus datos por teclado.
+     * @throws ParseException Señala que ha ocurrido un error.
+     */
     public void AgregarPaciente() throws ParseException{
         String Fecha;
         
@@ -157,7 +240,12 @@ public class Pacientes extends Persona {
         
         System.out.println("*** Se ha ingresado un nuevo paciente con exito! ***");
     }
-       
+    
+    /**
+     * Comprueba si el paciente está registrado, si no lo está crea un nuevo paciente.
+     * @param rut numero de identificación del paciente que será buscado.
+     * @throws ParseException Señala que ha ocurrido un error
+     */
      public void comprobarSiEstaRegistrado(int rut) throws ParseException{
         if (pacientes.isEmpty()){
             System.out.println("Cree nuevo paciente");
@@ -178,6 +266,10 @@ public class Pacientes extends Persona {
         }
     }
     
+     /**
+      * Permite modificar datos del paciente ya registrado: nombre, apellido, telefono y correo.
+      * @param paciente pacientes registrados en el Arraylist.
+      */
     public void ModificarPaciente(Pacientes paciente){
            
         int RutPaciente;
@@ -233,6 +325,10 @@ public class Pacientes extends Persona {
         }
     }
   
+    /**
+     * Permite Eliminar a un paciente ya registrado a traves de su Rut.
+     * @param paciente pacientes registrados en el Listado.
+     */
     public void EliminarPaciente(Pacientes paciente){
         int RutPaciente;
        
@@ -249,7 +345,9 @@ public class Pacientes extends Persona {
     }
     
     
-    //sobre escritura del método mostrar de la clase abstracto Persona
+    /**
+     * Sobreescritura del método mostrar de la clase abstracta Persona.
+     */
     @Override
     public void mostrar(){
         if (pacientes.isEmpty())
@@ -266,5 +364,21 @@ public class Pacientes extends Persona {
         System.out.println("******************************");
         }
     }   
+    
+    /**
+     * Metodo Insertar datos de la interface Datos.
+     */
+    @Override
+    public void InsertarDatos() {
+        
+    }
+
+    /**
+     * Metodo Modificar datos de la interface Datos.
+     */
+    @Override
+    public void Modificar() {
+        
+    }
 }
 
