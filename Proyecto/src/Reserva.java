@@ -1,21 +1,13 @@
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author naomi
- */
-public class Reserva implements Interface{
+public class Reserva implements Interface {
     
     private int CodigoReserva;
     private Date Fecha;
@@ -120,7 +112,9 @@ public class Reserva implements Interface{
         }
     }
     
-    public void ModificarReserva() throws ParseException{                
+
+
+    public void ModificarReserva() throws ParseException {                
         int RutPaciente;
         String fecha;
         int opcion;
@@ -141,12 +135,18 @@ public class Reserva implements Interface{
                     case 1:
                         System.out.println("Ingrese nueva fecha de reserva en formato dd/mm/yyyy");
                         fecha=Entrada.next();
-                        Date FFecha=new SimpleDateFormat("dd/mm/yyyy").parse(fecha);
+                        Date FFecha = null;
+                    try {
+                        FFecha = new SimpleDateFormat("dd/mm/yyyy").parse(fecha);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Reserva.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                         LReserva.get(i).setFecha(FFecha);
                         System.out.println("**************************");
                         System.out.println("*** Reserva modificada ***");
                         System.out.println("**************************");
                         break;
+
                     }
                 } while (opcion != 2);
             }
@@ -154,8 +154,8 @@ public class Reserva implements Interface{
                 System.out.println("*** EL PACIENTE NO SE ENCUENTRA REGISTRADO ***");  
         }
     }
-    
-     public void EliminarReserva() throws ParseException{
+
+     public void EliminarReserva() throws ParseException {
                    
         int RutPaciente;
         String fecha;
@@ -174,15 +174,20 @@ public class Reserva implements Interface{
                 System.out.println("*** EL PACIENTE NO SE ENCUENTRA REGISTRADO ***");      
         }
     }
-    @Override
-    public void InsertarDatos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
     @Override
     public void Modificar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-                 
+
+    @Override
+    public void Eliminar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+
 }
     
+
