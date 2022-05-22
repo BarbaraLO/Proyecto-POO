@@ -9,12 +9,19 @@ Naomie Contreras
 import java.text.ParseException;
 import java.util.Scanner;
 
+/**
+ * Clase que implementa el menú de usuario e invocacion de metodos.
+ * @author Naomi Contreras
+ * @author Barbara Leiva
+ */
 public class Principal {
 
+    
     public static Pacientes pacientes = new Pacientes();
     public static Profesionales profesionales = new Profesionales();
     public static Reserva reservas = new Reserva();
     
+
     public static void main(String[] args) throws ParseException {
         Scanner Entrada;
         int opcion;
@@ -47,11 +54,11 @@ public class Principal {
                     break;
 
                 case 3:
-                    pacientes.Modificar(pacientes);
+                    pacientes.ModificarPaciente(pacientes);
                     break;
 
                 case 4:
-                    pacientes.Eliminar(pacientes);
+                    pacientes.EliminarPaciente(pacientes);
                     break;
 
                 case 5:

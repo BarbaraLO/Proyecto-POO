@@ -1,13 +1,16 @@
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-
-public class Reserva implements Interface {
+/**
+ * Clase que contiene informacion sobre la reserva de horas de los pacientes; Implementa interface Datos.
+ * @author Naomi Contreras
+ * @author Barbara Leiva
+ */
+public class Reserva implements Datos{
     
     private int CodigoReserva;
     private Date Fecha;
@@ -17,50 +20,90 @@ public class Reserva implements Interface {
     public Reserva(){
         LReserva = new ArrayList<>();
     }
-
+    
+    /**
+     * Constructor.
+     * @param CodigoReserva Numero identificador de la reserva del paciente.
+     * @param pacientes Listado de pacientes.
+     * @param Fecha Fecha de la reserva solicitada.
+     */
     public Reserva(int CodigoReserva, ArrayList<Pacientes> pacientes, Date Fecha) {
         this.CodigoReserva= CodigoReserva;
-       // this.PPacientes=PPacientes;
         this.LPacientes=pacientes;
         this.Fecha=Fecha;
     }
-
+    
+    /**
+     * Permite obtener valores de lista de reservas.
+     * @return Lista de reservas
+     */
     public ArrayList<Reserva> getLReserva() {
         return LReserva;
     }
-
+    
+    /**
+     * Permite obtener valores de lista de pacientes.
+     * @return Lista de pacientes
+     */
     public ArrayList<Pacientes> getLPacientes() {
         return LPacientes;
     }
     
+    /**
+     * Permite obtener valor de atributo CodigoReserva.
+     * @return Codigo de la reserva
+     */
     public int getCodigoReserva() {
         return CodigoReserva;
     }
 
+    /**
+     * Permite obtener valor de atributo fecha.
+     * @return fecha de la reserva
+     */
     public Date getFecha() {
         return Fecha;
     }
 
+    /**
+     * Permite fijar valores a lista de pacientes.
+     * @param LReserva Lista de reservas
+     */
     public void setLReserva(ArrayList<Reserva> LReserva) {
         this.LReserva = LReserva;
     }
 
+    /**
+     * Permite fijar valores a lista de pacientes.
+     * @param LPacientes Lista de pacientes
+     */
     public void setLPacientes(ArrayList<Pacientes> LPacientes) {
         this.LPacientes = LPacientes;
     }
 
-      
+    /**
+     * Permite fijar valor de atributo CodigoReserva.
+     * @param CodigoReserva Codigo de la reserva
+     */  
     public void setCodigoReserva(int CodigoReserva) {
         this.CodigoReserva = CodigoReserva;
     }
 
+    /**
+     * Permite fijar valor de atributo fecha.
+     * @param Fecha Fecha de la reserva
+     */
     public void setFecha(Date Fecha) {
         this.Fecha = Fecha;
     }
     
     Scanner Entrada = new Scanner(System.in);
 
-    
+    /**
+     * Guarda los datos del paciente en la reserva solicitada.
+     * @param paciente pacientes registrados en el Listado.
+     * @throws ParseException Señala que ha ocurrido un error.
+     */
     public void InsertarDatos(Pacientes paciente) throws ParseException{
         
         int ID;
@@ -96,6 +139,9 @@ public class Reserva implements Interface {
         } 
     }
    
+    /**
+     * Imprime los datos de la reservas guardadas: nombre, apellido, rut y telefono del paciente; fecha y codigo de la reserva.
+     */
     public void ImprimirDatos(){
         if (LReserva.isEmpty())
             System.out.println("NO HAY RESERVAS REGISTRADAS");
@@ -112,9 +158,11 @@ public class Reserva implements Interface {
         }
     }
     
-
-
-    public void ModificarReserva() throws ParseException {                
+    /**
+     * Permite modificar la fecha de la reserva a traves del rut del paciente.
+     * @throws ParseException Señala que ha ocurrido un error.
+     */
+    public void ModificarReserva() throws ParseException{                
         int RutPaciente;
         String fecha;
         int opcion;
@@ -135,18 +183,12 @@ public class Reserva implements Interface {
                     case 1:
                         System.out.println("Ingrese nueva fecha de reserva en formato dd/mm/yyyy");
                         fecha=Entrada.next();
-                        Date FFecha = null;
-                    try {
-                        FFecha = new SimpleDateFormat("dd/mm/yyyy").parse(fecha);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(Reserva.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                        Date FFecha=new SimpleDateFormat("dd/mm/yyyy").parse(fecha);
                         LReserva.get(i).setFecha(FFecha);
                         System.out.println("**************************");
                         System.out.println("*** Reserva modificada ***");
                         System.out.println("**************************");
                         break;
-
                     }
                 } while (opcion != 2);
             }
@@ -154,8 +196,12 @@ public class Reserva implements Interface {
                 System.out.println("*** EL PACIENTE NO SE ENCUENTRA REGISTRADO ***");  
         }
     }
-
-     public void EliminarReserva() throws ParseException {
+    
+    /**
+     * Permite eliminar una reserva registrada a partir del rut del paciente.
+     * @throws ParseException Señala que ha ocurrido un error.
+     */
+     public void EliminarReserva() throws ParseException{
                    
         int RutPaciente;
         String fecha;
@@ -174,20 +220,23 @@ public class Reserva implements Interface {
                 System.out.println("*** EL PACIENTE NO SE ENCUENTRA REGISTRADO ***");      
         }
     }
+    
+    /**
+    * Metodo Insertar datos de la interface Datos.
+    */
+    @Override
+    public void InsertarDatos() {
+        
+    }
 
-
+    /**
+    * Metodo Modificar datos de la interface Datos.
+    */
     @Override
     public void Modificar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
-
-    @Override
-    public void Eliminar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
-
+    
+                  
 }
     
-
