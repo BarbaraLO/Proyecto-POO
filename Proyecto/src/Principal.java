@@ -47,7 +47,7 @@ public class Principal {
                     break;
 
                 case 3:
-                    pacientes.ModificarPaciente(pacientes);
+                    pacientes.Modificar(pacientes);
                     break;
 
                 case 4:
