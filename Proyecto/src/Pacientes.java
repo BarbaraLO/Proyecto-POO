@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Pacientes extends Persona {
+public class Pacientes extends Persona implements Interface {
     
     public Validaciones validaciones = new Validaciones();
     
@@ -177,8 +177,8 @@ public class Pacientes extends Persona {
             }
         }
     }
-    
-    public void ModificarPaciente(Pacientes paciente){
+    //metodo de la interface
+    public void Modificar(Pacientes paciente){
            
         int RutPaciente;
         int opcion, numero;
@@ -266,5 +266,16 @@ public class Pacientes extends Persona {
         System.out.println("******************************");
         }
     }   
+    
+    @Override
+    public void InsertarDatos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void Modificar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+}
 }
 
