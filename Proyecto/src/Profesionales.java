@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Profesionales {
+public class Profesionales extends Persona {
     
     private String nombre; //coresponde al nombre del profesional
     private int rut; //corresponde al rut del profesional para poder identificarlo como persona individual
@@ -102,6 +102,8 @@ public class Profesionales {
         }
     }
 
+    //sobreescritura metodo mostrar de la clase Persona
+    @Override
     public void mostrar() {
         System.out.println("*** ESPECIALIDADES ***");
         System.out.println("1: Medicina General");
