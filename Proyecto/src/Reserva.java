@@ -15,7 +15,7 @@ import java.util.Scanner;
  *
  * @author naomi
  */
-public class Reserva {
+public class Reserva implements Interface{
     
     private int CodigoReserva;
     private Date Fecha;
@@ -174,7 +174,15 @@ public class Reserva {
                 System.out.println("*** EL PACIENTE NO SE ENCUENTRA REGISTRADO ***");      
         }
     }
-    
+    @Override
+    public void InsertarDatos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void Modificar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
                  
 }
     
