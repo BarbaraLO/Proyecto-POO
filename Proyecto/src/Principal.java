@@ -51,7 +51,7 @@ public class Principal {
                     break;
 
                 case 4:
-                    pacientes.EliminarPaciente(pacientes);
+                    pacientes.Eliminar(pacientes);
                     break;
 
                 case 5:
