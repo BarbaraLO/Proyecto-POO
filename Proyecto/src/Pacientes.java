@@ -177,7 +177,7 @@ public class Pacientes extends Persona implements Interface {
             }
         }
     }
-    //metodo de la interface
+    
     public void Modificar(Pacientes paciente){
            
         int RutPaciente;
@@ -233,7 +233,7 @@ public class Pacientes extends Persona implements Interface {
         }
     }
   
-    public void EliminarPaciente(Pacientes paciente){
+    public void Eliminar(Pacientes paciente){
         int RutPaciente;
        
         System.out.println("Ingrese RUT del paciente sin puntos ni guion");
@@ -266,16 +266,20 @@ public class Pacientes extends Persona implements Interface {
         System.out.println("******************************");
         }
     }   
-    
-    @Override
-    public void InsertarDatos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public void Modificar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void Eliminar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+
+
 }
-}
+
 
