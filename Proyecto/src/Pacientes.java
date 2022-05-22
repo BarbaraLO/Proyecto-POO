@@ -224,7 +224,8 @@ public class Pacientes {
         }
     }
     
-    public void mostrarPacientes(){
+    @Override
+    public void mostrar(){
         if (pacientes.isEmpty())
             System.out.println("*** NO SE ENCUENTRAN PACIENTES REGISTRADOS ***");
         else
