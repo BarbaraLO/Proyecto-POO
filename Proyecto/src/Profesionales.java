@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Profesionales extends Persona {
     
     private String nombre; //coresponde al nombre del profesional
