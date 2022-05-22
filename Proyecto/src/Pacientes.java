@@ -224,6 +224,8 @@ public class Pacientes {
         }
     }
     
+    
+    //sobre escritura del método mostrar de la clase abstracto Persona
     @Override
     public void mostrar(){
         if (pacientes.isEmpty())
