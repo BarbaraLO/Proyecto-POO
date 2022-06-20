@@ -89,9 +89,8 @@ public class Ventana extends Frame {
             
             submenuBuscar.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    
-                    
-                    Pacientes paciente = new Pacientes();
+                    BuscarPaciente buscar= new BuscarPaciente();
+                    buscar.setVisible(true);
                         
                 }
                     
