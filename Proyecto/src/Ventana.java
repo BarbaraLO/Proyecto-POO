@@ -45,7 +45,8 @@ public class Ventana extends Frame {
              
         Menu menuA = new Menu( "Pacientes" );
         Menu menuB = new Menu( "Profesionales" );
-        Menu menuZ = new Menu( "Reservas ");
+        Menu menuC = new Menu( "Reservas ");
+        Menu menuZ = new Menu( "Salir ");
              
         MenuItem submenuAgregar=new MenuItem("Agregar Paciente");
         menuA.add(submenuAgregar);
@@ -58,6 +59,21 @@ public class Ventana extends Frame {
         MenuItem submenuLPacientes=new MenuItem("Listado de Pacientes");
         menuA.add(submenuLPacientes);     
         
+        
+        
+        MenuItem submenuVerProfesionales=new MenuItem("Ver lista Profesionales");
+        menuB.add(submenuVerProfesionales);
+        
+        
+        
+        MenuItem submenuReservar=new MenuItem("Reservar Hora");
+        menuC.add(submenuReservar);
+        MenuItem submenuModificarR=new MenuItem("Modificar Reserva");
+        menuC.add(submenuModificarR);
+        MenuItem submenuEliminarR=new MenuItem("Eliminar Reserva");
+        menuC.add(submenuEliminarR);
+        MenuItem submenuMostrarR=new MenuItem("Mostrar Reservas");
+        menuC.add(submenuMostrarR);        
 
         //actionlistener
              
@@ -94,12 +110,61 @@ public class Ventana extends Frame {
                     paciente.EliminarPaciente(paciente);
                 }
             });                    
+            submenuListaPacientes.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    Pacientes pacientes=new Pacientes();
+                    pacientes.mostrar();
+                }
+            });              
+            
+            
+            //boton profesionales
+            submenuVerProfesionales.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    Profesionales profesionales = new Profesionales();
+                    profesionales.DatosProfesionales();
+                }
+            });              
+            
+            
+            //boton reserva
+            submenuReservar.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    Reserva reserva = new Reserva();
+                    reserva.InsertarDatos();
+                   
+                }      
+            });
+
+            submenuModificarR.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    Reserva reserva = new Reserva();
+         
+                 
+                }  
+            });
+            
+            submenuEliminarR.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    Reserva reserva = new Reserva();
+               
+                }
+            });
+            
+            submenuMostrarR.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    Reserva reserva = new Reserva();
+                    reserva.ImprimirDatos();
+                }
+            });       
+            
             
             
              menu.add(menuA);
              menu.add(menuB);
+             menu.add(menuC);
              menu.add(menuZ);
-             setMenuBar(menu);    
+             setMenuBar(menu);     
     }   
     
 }
