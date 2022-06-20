@@ -22,8 +22,8 @@ import java.util.logging.Logger;
  *
  * @author naomi
  */
-public class VentanaPaciente extends Frame {
-    
+public class VentanaPaciente extends Frame implements WindowListener, ActionListener, KeyListener {
+
     private Label lblNombre, lblApellido,lblRut,lblFecha,lblTelefono, lblCorreo, lblMensaje;
     private Button btnAceptar, btnLimpiar,btnReporte;
     private TextField txtNombre,txtApellido,txtRut,txtFecha, txtTelefono, txtCorreo;
@@ -33,12 +33,159 @@ public class VentanaPaciente extends Frame {
     
     public VentanaPaciente(String titulo){
         super(titulo);
-        this.addWindowListener((WindowListener) this);
+        this.addWindowListener(this);
     }
+
+    // Getter y Setter
+    public Pacientes getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Pacientes paciente) {
+        this.paciente = paciente;
+    }
+
+    public Label getLblNombre() {
+        return lblNombre;
+    }
+
+    public Label getLblApellido() {
+        return lblApellido;
+    }
+
+    public Label getLblRut() {
+        return lblRut;
+    }
+
+    public Label getLblFecha() {
+        return lblFecha;
+    }
+
+    public Label getLblTelefono() {
+        return lblTelefono;
+    }
+
+    public Label getLblCorreo() {
+        return lblCorreo;
+    }
+
+    public Label getLblMensaje() {
+        return lblMensaje;
+    }
+
+    public Button getBtnAceptar() {
+        return btnAceptar;
+    }
+
+    public Button getBtnLimpiar() {
+        return btnLimpiar;
+    }
+
+    public Button getBtnReporte() {
+        return btnReporte;
+    }
+
+    public TextField getTxtNombre() {
+        return txtNombre;
+    }
+
+    public TextField getTxtApellido() {
+        return txtApellido;
+    }
+
+    public TextField getTxtRut() {
+        return txtRut;
+    }
+
+    public TextField getTxtFecha() {
+        return txtFecha;
+    }
+
+    public TextField getTxtTelefono() {
+        return txtTelefono;
+    }
+
+    public TextField getTxtCorreo() {
+        return txtCorreo;
+    }
+
+    public boolean isPresion() {
+        return presion;
+    }
+
+    public void setLblNombre(Label lblNombre) {
+        this.lblNombre = lblNombre;
+    }
+
+    public void setLblApellido(Label lblApellido) {
+        this.lblApellido = lblApellido;
+    }
+
+    public void setLblRut(Label lblRut) {
+        this.lblRut = lblRut;
+    }
+
+    public void setLblFecha(Label lblFecha) {
+        this.lblFecha = lblFecha;
+    }
+
+    public void setLblTelefono(Label lblTelefono) {
+        this.lblTelefono = lblTelefono;
+    }
+
+    public void setLblCorreo(Label lblCorreo) {
+        this.lblCorreo = lblCorreo;
+    }
+
+    public void setLblMensaje(Label lblMensaje) {
+        this.lblMensaje = lblMensaje;
+    }
+
+    public void setBtnAceptar(Button btnAceptar) {
+        this.btnAceptar = btnAceptar;
+    }
+
+    public void setBtnLimpiar(Button btnLimpiar) {
+        this.btnLimpiar = btnLimpiar;
+    }
+
+    public void setBtnReporte(Button btnReporte) {
+        this.btnReporte = btnReporte;
+    }
+
+    public void setTxtNombre(TextField txtNombre) {
+        this.txtNombre = txtNombre;
+    }
+
+    public void setTxtApellido(TextField txtApellido) {
+        this.txtApellido = txtApellido;
+    }
+
+    public void setTxtRut(TextField txtRut) {
+        this.txtRut = txtRut;
+    }
+
+    public void setTxtFecha(TextField txtFecha) {
+        this.txtFecha = txtFecha;
+    }
+
+    public void setTxtTelefono(TextField txtTelefono) {
+        this.txtTelefono = txtTelefono;
+    }
+
+    public void setTxtCorreo(TextField txtCorreo) {
+        this.txtCorreo = txtCorreo;
+    }
+
+    public void setPresion(boolean presion) {
+        this.presion = presion;
+    }
+    
+    
     
     public void Formulario(){
         
-        this.setSize(1000, 600);
+        this.setSize(1200, 700);
         this.setLayout(null);
         this.setVisible(true);
          
@@ -55,84 +202,80 @@ public class VentanaPaciente extends Frame {
          lblMensaje.setForeground(Color.RED);
          lblMensaje.setBounds(400,50,400,30);
          
-         
-         
          lblNombre=new Label("Nombre");  
 	 lblNombre.setBounds(250,100,150,30);
 	 lblNombre.setFont(labelFont);  
 	 lblNombre.setForeground(Color.WHITE);
+        
          
          txtNombre=new TextField();
 	 txtNombre.setBounds(400,100,400,30);
 	 txtNombre.setFont(textFont);
-         
-         
-         
-
+          
          lblApellido=new Label("Apellidos");  
 	 lblApellido.setBounds(250,150,150,30);
 	 lblApellido.setFont(labelFont);  
 	 lblApellido.setForeground(Color.WHITE);
+        
          
          txtApellido=new TextField();
 	 txtApellido.setBounds(400,150,400,30);
-	 txtApellido.setFont(textFont);
-         
-         
+	 txtApellido.setFont(textFont); 
          
          lblRut=new Label("Rut");  
 	 lblRut.setBounds(250,200,150,30);
 	 lblRut.setFont(labelFont);  
 	 lblRut.setForeground(Color.WHITE);
+        
          
          txtRut=new TextField();
 	 txtRut.setBounds(400,200,400,30);
 	 txtRut.setFont(textFont);
-         
-         
-         
+         txtRut.setText("RUT sin puntos ni guion");
+                 
          lblFecha=new Label("Fecha Nacimiento");  
 	 lblFecha.setBounds(250,250,150,30);
 	 lblFecha.setFont(labelFont);  
 	 lblFecha.setForeground(Color.WHITE);
-         
+        
          txtFecha=new TextField();
 	 txtFecha.setBounds(400,250,400,30);
 	 txtFecha.setFont(textFont);
          txtFecha.setText("DD/MM/YYYY");
-         
-         
+        
          
          lblTelefono=new Label("Telefono");  
-	 lblTelefono.setBounds(250,250,150,30);
+	 lblTelefono.setBounds(250,300,150,30);
 	 lblTelefono.setFont(labelFont);  
 	 lblTelefono.setForeground(Color.WHITE);
 
          txtTelefono=new TextField();
-	 txtTelefono.setBounds(400,250,400,30);
+	 txtTelefono.setBounds(400,300,400,30);
 	 txtTelefono.setFont(textFont);
-         txtTelefono.setText("DD/MM/YYYY");
-         
-         
-         
+
+                 
          lblCorreo=new Label("Correo");  
-	 lblCorreo.setBounds(250,250,150,30);
+	 lblCorreo.setBounds(250,350,150,30);
 	 lblCorreo.setFont(labelFont);  
 	 lblCorreo.setForeground(Color.WHITE);
 
          txtCorreo=new TextField();
-	 txtCorreo.setBounds(400,250,400,30);
+	 txtCorreo.setBounds(400,350,400,30);
 	 txtCorreo.setFont(textFont);
-         txtCorreo.setText("DD/MM/YYYY");
 
+      //   for(int i=0; i<paciente.getPacientes().size(); i++)
+             
+         btnAceptar=new Button("Crear");
+         btnAceptar.setBounds(500,500,100,50);
+	 btnAceptar.setFont(textFont);
+         
          btnLimpiar=new Button("Limpiar");
-         btnLimpiar.setBounds(500,350,100,50);
+         btnLimpiar.setBounds(500,500,100,50);
 	 btnLimpiar.setFont(textFont);
-         
-         
-         btnAceptar.addActionListener((ActionListener) this);
-         btnLimpiar.addActionListener((ActionListener) this);
-         txtFecha.addKeyListener((KeyListener) this);
+                 
+         btnAceptar.addActionListener(this);
+         btnLimpiar.addActionListener(this);
+         txtFecha.addKeyListener(this);
          
          
          add(lblMensaje);
@@ -190,95 +333,54 @@ public class VentanaPaciente extends Frame {
         lblMensaje.setForeground(Color.WHITE);
         this.add(lblMensaje); 
          
-        for(int i=0; i<paciente.pacientes.size();i++){
+        for(int i=0; i<paciente.getPacientes().size();i++){
              
-            lblMensaje=new Label(paciente.pacientes.get(i).getNombre());
+            lblMensaje=new Label(paciente.getPacientes().get(i).getNombre());
             lblMensaje.setForeground(Color.WHITE);
             this.add(lblMensaje);  
             
-            lblMensaje=new Label(paciente.pacientes.get(i).getApellido());
+            lblMensaje=new Label(paciente.getPacientes().get(i).getApellido());
             lblMensaje.setForeground(Color.WHITE);
             this.add(lblMensaje); 
             
-            //falta rut
+   //         lblMensaje=new Label(paciente.getPacientes().get(i).getRut());
+            lblMensaje.setForeground(Color.WHITE);
+            this.add(lblMensaje); 
             
-            lblMensaje=new Label(paciente.pacientes.get(i).getFechaNacimiento().toString());
+            lblMensaje=new Label(paciente.getPacientes().get(i).getFechaNacimiento().toString());
             lblMensaje.setForeground(Color.WHITE);
             this.add(lblMensaje);          
+
+
+    //        lblMensaje=new Label(paciente.getPacientes().get(i).getTelefono();
+            lblMensaje.setForeground(Color.WHITE);
+            this.add(lblMensaje); 
             
-                //falta telefono
-            
-            lblMensaje=new Label(paciente.pacientes.get(i).getCorreo());
+            lblMensaje=new Label(paciente.getPacientes().get(i).getCorreo());
             lblMensaje.setForeground(Color.WHITE);
             this.add(lblMensaje);             
          } 
     }
     
-    
-    
-    //eventos
-    
     public void actionPerformed(ActionEvent e) {
-        Date fechaNacimiento;    
-         
-        //button 
-        Object obj = e.getSource();
-         
-         
-        if(obj==btnReporte){
-            System.out.println("reporte");
-            Reporte();
-        }
- 
-        if(obj==btnAceptar){
-            System.out.println("crear");
-              
-            if(!txtNombre.getText().toString().isEmpty() && !txtApellido.getText().toString().isEmpty() && !txtRut.getText().toString().isEmpty() &&  !txtFechaNacimiento.getText().toString().isEmpty()){
-                try {
-                    fechaNacimiento=new SimpleDateFormat("dd/mm/yyyy").parse(txtFecha.getText().toString());
-                      
-                    paciente.setNombre(txtNombre.getText().toString());
-                    paciente.setApellido(txtApellido.getText().toString());
-                    paciente.setRut(txtRut.getText());
-                    paciente.setFechaNacimiento(fechaNacimiento);
+        
+     //    fechaNacimiento=new SimpleDateFormat("dd/mm/yyyy").parse(txtFechaNacimiento.getText().toString());
+        
+        paciente.setNombre(txtNombre.getText());
+        paciente.setApellido(txtApellido.getText());
+        paciente.setRut(Integer.parseInt(txtRut.getText()));
+        paciente.setFechaNacimiento(null);
+        paciente.setTelefono(Integer.parseInt(txtTelefono.getText()));
+        paciente.setCorreo(txtCorreo.getText());
+        
 
-                      
-                    paciente.pacientes.add(paciente);
-                      
-                    this.removeAll();
-                      
-                    lblMensaje=new Label("Datos insertados!!!");
-                    lblMensaje.setForeground(Color.RED);
-                    lblMensaje.setBounds(400,50,400,30);
-                    Font textFont =new  Font("arial", Font.PLAIN, 15);
-                    btnReporte=new Button("Reporte");
-                    lblMensaje.setForeground(Color.WHITE);
-                    btnReporte.setBounds(500,50,500,30);
-                    btnReporte.setFont(textFont);
-                      
-                      
-                    add(lblMensaje);
-                    add(btnReporte);
-                    btnReporte.addActionListener((ActionListener) this);  
-                }catch (ParseException ex) {
-                      Logger.getLogger(VentanaPaciente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                
-            }else{
-                Alerta("Los datos deben llenarse");
-                lblMensaje.setText("Los campos deben llenarse");        
-            }
-            
-            if(obj==btnLimpiar){
-            System.out.println("limpiar");
-            }    
-            
-            Pacientes paciente = new Pacientes(txtNombre.getText().toString()(txtApellido.getText));
-            paciente.AgregarPaciente();
-        }
-    }
+        paciente.InsertarDatoss();
+
+        
     
+    }
+
+   
     public void Alerta(String Mensaje){
         Dialog ventanaAlerta = new Dialog(this, Mensaje, true);  
             ventanaAlerta.setLayout( new FlowLayout() );  

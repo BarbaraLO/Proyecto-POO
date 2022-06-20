@@ -22,6 +22,7 @@ public class Pacientes extends Persona implements Datos {
     private int telefono;
     private String correo;
  
+
     public Pacientes() {
         pacientes = new ArrayList<>();
     }
@@ -210,7 +211,7 @@ public class Pacientes extends Persona implements Datos {
      * @throws ParseException Señala que ha ocurrido un error.
      */
     public void AgregarPaciente() throws ParseException{
-        String Fecha;
+        String Fecha=null;
         
         System.out.println("*** Agregando Paciente, a continuacion ingrese sus datos ***"); 
         
@@ -238,7 +239,7 @@ public class Pacientes extends Persona implements Datos {
         Pacientes paciente = new Pacientes(nombre,apellido,rut,FFecha,telefono,correo);
         pacientes.add(paciente);
         
-        System.out.println("*** Se ha ingresado un nuevo paciente con exito! ***");
+    //    System.out.println("*** Se ha ingresado un nuevo paciente con exito! ***");
     }
     
     /**
@@ -365,12 +366,16 @@ public class Pacientes extends Persona implements Datos {
         }
     }   
     
+    public void InsertarDatoss(){
+        VentanaPaciente paciente = new VentanaPaciente("Registrar Paciente");
+        paciente.Formulario();
+    }
+    
     /**
      * Metodo Insertar datos de la interface Datos.
      */
     @Override
     public void InsertarDatos() {
-        
     }
 
     /**
