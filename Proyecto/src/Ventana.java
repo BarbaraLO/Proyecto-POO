@@ -19,7 +19,7 @@ public class Ventana extends Frame {
 
     
     public void Configurar(){
-        this.setTitle("xd");
+        this.setTitle("clinica");
         this.setSize(500,500);
         this.setLocation(100,100);
         
