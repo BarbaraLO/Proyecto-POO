@@ -110,7 +110,7 @@ public class Ventana extends Frame {
                     paciente.EliminarPaciente(paciente);
                 }
             });                    
-            submenuListaPacientes.addActionListener(new ActionListener(){
+            submenuLPacientes.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
                     Pacientes pacientes=new Pacientes();
                     pacientes.mostrar();
