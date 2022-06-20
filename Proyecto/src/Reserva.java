@@ -170,7 +170,7 @@ public class Reserva implements Datos{
         System.out.println("Ingrese RUT del paciente sin puntos ni guion");
         RutPaciente = Entrada.nextInt();
         for(int i = 0; i < LReserva.size(); i++){
-            if((LReserva.get(i).LPacientes.get(i).getRut())==(RutPaciente)){
+            if((LReserva.get(i).LPacientes.get(i).getRut().equals(RutPaciente))){
             do {
                 System.out.println("____________________________");
                 System.out.println("Modificar hora de reserva");
@@ -210,7 +210,7 @@ public class Reserva implements Datos{
         System.out.println("Ingrese RUT del paciente sin puntos ni guion");
         RutPaciente = Entrada.nextInt();
         for(int i = 0; i < LReserva.size(); i++){
-            if((LReserva.get(i).LPacientes.get(i).getRut())==(RutPaciente)){
+            if((LReserva.get(i).LPacientes.get(i).getRut()).equals(RutPaciente)){
                 LReserva.remove(i);
                 System.out.println("*************************");
                 System.out.println("*** Reserva eliminada ***");
