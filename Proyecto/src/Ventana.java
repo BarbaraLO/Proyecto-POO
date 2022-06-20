@@ -121,8 +121,8 @@ public class Ventana extends Frame {
             //boton profesionales
             submenuVerProfesionales.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
-                    Profesionales profesionales = new Profesionales();
-                    profesionales.DatosProfesionales();
+                    ListaDeProfesionales ver= new ListaDeProfesionales();
+                    ver.setVisible(true);
                 }
             });              
             
