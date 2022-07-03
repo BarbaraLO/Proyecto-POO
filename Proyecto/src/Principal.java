@@ -18,8 +18,9 @@ public class Principal {
 
     public static void main(String[] args)  {
         Ventana vl= new Ventana();
-        vl.Crear();
         vl.Configurar();
+        vl.Crear();
+
         
         vl.setTitle("Sistema de Clinica de salud");
         vl.setSize(500,500);

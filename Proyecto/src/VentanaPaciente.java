@@ -9,8 +9,6 @@ import java.awt.event.WindowListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,7 +22,7 @@ import java.util.logging.Logger;
  */
 public class VentanaPaciente extends Frame implements WindowListener, ActionListener, KeyListener {
 
-    private Label lblNombre, lblApellido,lblRut,lblFecha,lblTelefono, lblCorreo, lblMensaje;
+    private Label lblNombre, lblApellido,lblRut,lblFecha,lblTelefono, lblCorreo, lblMensaje,lblTitulo;
     private Button btnAceptar, btnLimpiar,btnReporte;
     private TextField txtNombre,txtApellido,txtRut,txtFecha, txtTelefono, txtCorreo;
     boolean presion=false;
@@ -182,8 +180,7 @@ public class VentanaPaciente extends Frame implements WindowListener, ActionList
     }
     
     
-    
-    public void Formulario(){
+    public void Formulario() throws ParseException{
         
         this.setSize(1200, 700);
         this.setLayout(null);
@@ -196,7 +193,12 @@ public class VentanaPaciente extends Frame implements WindowListener, ActionList
         Font titleFont = new Font("arial", Font.BOLD, 25);
 	Font labelFont =new  Font("arial", Font.PLAIN, 18);
 	Font textFont =new  Font("arial", Font.PLAIN, 15);
-         
+        
+        
+         lblTitulo =new Label("DATOS DEL PACIENTE");  
+	 lblTitulo.setBounds(250,50,450,30);
+	 lblTitulo.setFont(titleFont);  
+	 lblTitulo.setForeground(Color.WHITE);
         
          lblMensaje=new Label("");
          lblMensaje.setForeground(Color.RED);
@@ -262,8 +264,6 @@ public class VentanaPaciente extends Frame implements WindowListener, ActionList
          txtCorreo=new TextField();
 	 txtCorreo.setBounds(400,350,400,30);
 	 txtCorreo.setFont(textFont);
-
-      //   for(int i=0; i<paciente.getPacientes().size(); i++)
              
          btnAceptar=new Button("Crear");
          btnAceptar.setBounds(500,500,100,50);
@@ -278,6 +278,7 @@ public class VentanaPaciente extends Frame implements WindowListener, ActionList
          txtFecha.addKeyListener(this);
          
          
+         add(lblTitulo);
          add(lblMensaje);
 	 add(lblNombre);
          add(txtNombre);
@@ -292,23 +293,25 @@ public class VentanaPaciente extends Frame implements WindowListener, ActionList
          add(lblCorreo);
          add(txtCorreo);
          add(btnAceptar);
-         add(btnLimpiar);       
+         add(btnLimpiar);
+         
     }
-    
-    public void Reporte(){
+ 
+
+    public void ListadoPacientes(){
         
         this.removeAll();
-         
+        
+        this.setLayout(new GridLayout(2, 5));
+        this.setSize(1000,600);
+        this.setVisible(true);
 	Color formColor = new Color(53, 59, 72);
 	setBackground(formColor);
-         
          
         Font titleFont = new Font("arial", Font.BOLD, 25);
 	Font labelFont =new  Font("arial", Font.PLAIN, 18);
 	Font textFont =new  Font("arial", Font.PLAIN, 15);
-         
-        this.setLayout(new GridLayout(2, 5));
-         
+                
         lblMensaje=new Label("Nombre");
         lblMensaje.setForeground(Color.WHITE);
         this.add(lblMensaje);
@@ -332,9 +335,10 @@ public class VentanaPaciente extends Frame implements WindowListener, ActionList
         lblMensaje=new Label("Correo");
         lblMensaje.setForeground(Color.WHITE);
         this.add(lblMensaje); 
-         
-        for(int i=0; i<paciente.getPacientes().size();i++){
-             
+
+        
+   for(int i=0; i<paciente.getPacientes().size();i++){
+       
             lblMensaje=new Label(paciente.getPacientes().get(i).getNombre());
             lblMensaje.setForeground(Color.WHITE);
             this.add(lblMensaje);  
@@ -343,42 +347,86 @@ public class VentanaPaciente extends Frame implements WindowListener, ActionList
             lblMensaje.setForeground(Color.WHITE);
             this.add(lblMensaje); 
             
-   //         lblMensaje=new Label(paciente.getPacientes().get(i).getRut());
+            lblMensaje=new Label(paciente.getPacientes().get(i).getRut());
             lblMensaje.setForeground(Color.WHITE);
             this.add(lblMensaje); 
             
             lblMensaje=new Label(paciente.getPacientes().get(i).getFechaNacimiento().toString());
             lblMensaje.setForeground(Color.WHITE);
-            this.add(lblMensaje);          
+            this.add(lblMensaje);         
 
 
-    //        lblMensaje=new Label(paciente.getPacientes().get(i).getTelefono();
+            lblMensaje=new Label(paciente.getPacientes().get(i).getTelefono());
             lblMensaje.setForeground(Color.WHITE);
             this.add(lblMensaje); 
             
             lblMensaje=new Label(paciente.getPacientes().get(i).getCorreo());
             lblMensaje.setForeground(Color.WHITE);
-            this.add(lblMensaje);             
-         } 
+            this.add(lblMensaje);    
+          } 
+   
     }
+
     
+    @Override
     public void actionPerformed(ActionEvent e) {
-        
-     //    fechaNacimiento=new SimpleDateFormat("dd/mm/yyyy").parse(txtFechaNacimiento.getText().toString());
-        
-        paciente.setNombre(txtNombre.getText());
-        paciente.setApellido(txtApellido.getText());
-        paciente.setRut(Integer.parseInt(txtRut.getText()));
-        paciente.setFechaNacimiento(null);
-        paciente.setTelefono(Integer.parseInt(txtTelefono.getText()));
-        paciente.setCorreo(txtCorreo.getText());
-        
+     Date fechaNacimiento;
+     
+     Object obj = e.getSource();
 
-        paciente.InsertarDatoss();
+        if(obj==btnReporte){
+            System.out.println("Listado de pacientes");
+            ListadoPacientes();
+        }
 
-        
+
+        if(obj==btnAceptar){
+            System.out.println("crear");
+
+
+
+        if(!txtNombre.getText().isEmpty() && !txtApellido.getText().isEmpty() &&  !txtFecha.getText().isEmpty() &&  !txtRut.getText().isEmpty() &&  !txtTelefono.getText().isEmpty() &&  !txtCorreo.getText().isEmpty()){
+            try {
+                fechaNacimiento=new SimpleDateFormat("dd/mm/yyyy").parse(txtFecha.getText());    
+
+                paciente.setNombre(txtNombre.getText());
+                paciente.setApellido(txtApellido.getText());
+                paciente.setRut(txtRut.getText());
+                paciente.setFechaNacimiento(fechaNacimiento);
+                paciente.setTelefono(txtTelefono.getText());
+                paciente.setCorreo(txtCorreo.getText());
+
+                paciente.AgregarPaciente();
+
+
+                this.removeAll();
+
+                lblMensaje=new Label("Datos insertados!!!");
+                lblMensaje.setForeground(Color.RED);
+                lblMensaje.setBounds(550,200,400,30);
+                Font textFont =new  Font("arial", Font.PLAIN, 25);
+                add(lblMensaje); 
+
+
+                this.removeAll();
+
+                btnReporte=new Button("Listado de pacientes");
+                lblMensaje.setForeground(Color.WHITE);
+                btnReporte.setBounds(400,300,400,30);
+                btnReporte.setFont(textFont);
+
+
+                add(lblMensaje);                  
+                add(btnReporte);
+                btnReporte.addActionListener(this);
+                paciente.mostrar();
+
+            } catch (ParseException ex) {;
+            }
     
-    }
+        }   
+        }           
+}
 
    
     public void Alerta(String Mensaje){
