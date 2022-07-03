@@ -17,9 +17,9 @@ public class Pacientes extends Persona implements Datos {
     private ArrayList <Pacientes> pacientes;
     private String nombre;
     private String apellido;
-    private int rut;
+    private String rut;
     private Date fechaNacimiento;
-    private int telefono;
+    private String telefono;
     private String correo;
  
 
@@ -36,7 +36,7 @@ public class Pacientes extends Persona implements Datos {
      * @param telefono numero de telefono del paciente
      * @param correo correo electronico del paciente
      */
-    public Pacientes(String nombre, String apellido, int rut, Date fecha, int telefono, String correo){
+    public Pacientes(String nombre, String apellido, String rut, Date fecha, String telefono, String correo){
         this.nombre=nombre;
         this.apellido=apellido;
         this.rut=rut;
@@ -100,7 +100,7 @@ public class Pacientes extends Persona implements Datos {
      * Permite obtener valor de atributo rut
      * @return rut del paciente.
      */
-    public int getRut() {
+    public String getRut() {
         return rut;
     }
     
@@ -108,7 +108,7 @@ public class Pacientes extends Persona implements Datos {
      * Permite fijar valores del atributo rut
      * @param rut rut del paciente.
      */
-    public void setRut(int rut) {
+    public void setRut(String rut) {
         this.rut = rut;
     }
 
@@ -132,7 +132,7 @@ public class Pacientes extends Persona implements Datos {
      * Permite obtener valor de atributo telefono
      * @return numero de telefono del paciente.
      */
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
     
@@ -140,7 +140,7 @@ public class Pacientes extends Persona implements Datos {
      * Permite fijar valores del atributo telefono
      * @param telefono numero de telefono del paciente.
      */
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -172,7 +172,7 @@ public class Pacientes extends Persona implements Datos {
      */
     public boolean buscarPaciente(int rut){
         for(int i = 0; i < pacientes.size(); i++){
-            if(pacientes.get(i).getRut()==(rut)){
+            if(pacientes.get(i).getRut().equals(rut)){
                 return true;
             }
         }return false;   
@@ -185,12 +185,12 @@ public class Pacientes extends Persona implements Datos {
      * @return devuelve 'true' (verdadero) si encuentra el paciente y 'false' (falso) si no lo hace.
      */
     public boolean buscar(){
-        int rutPaciente;
+        String rutPaciente;
         System.out.println("Ingrese RUT del paciente sin puntos ni guion");
-        rutPaciente=Entrada.nextInt();
+        rutPaciente=Entrada.next();
         
         for(int i=0; i<pacientes.size(); i++){
-            if(pacientes.get(i).getRut()==rutPaciente){
+            if(pacientes.get(i).getRut().equals(rutPaciente)){
                 System.out.println("Paciente encontrado");
                 System.out.println("*** DATOS PACIENTE ***");
                 System.out.println("Nombre :"+getNombre());
@@ -211,7 +211,7 @@ public class Pacientes extends Persona implements Datos {
      * @throws ParseException Señala que ha ocurrido un error.
      */
     public void AgregarPaciente() throws ParseException{
-        String Fecha=null;
+    /*    String Fecha=null;
         
         System.out.println("*** Agregando Paciente, a continuacion ingrese sus datos ***"); 
         
@@ -236,10 +236,14 @@ public class Pacientes extends Persona implements Datos {
         
         Date FFecha=new SimpleDateFormat("dd/mm/yyyy").parse(Fecha);
         
-        Pacientes paciente = new Pacientes(nombre,apellido,rut,FFecha,telefono,correo);
+    */  Pacientes paciente = new Pacientes(nombre,apellido,rut,fechaNacimiento,telefono,correo);
         pacientes.add(paciente);
         
-    //    System.out.println("*** Se ha ingresado un nuevo paciente con exito! ***");
+        if (pacientes.isEmpty()) {
+            System.out.println("*** LISTA VACIA ***");
+        } else {
+            System.out.println("*** Se ha ingresado un nuevo paciente con exito! ***");
+        }
     }
     
     /**
@@ -247,7 +251,7 @@ public class Pacientes extends Persona implements Datos {
      * @param rut numero de identificación del paciente que será buscado.
      * @throws ParseException Señala que ha ocurrido un error
      */
-     public void comprobarSiEstaRegistrado(int rut) throws ParseException{
+     public void comprobarSiEstaRegistrado(String rut) throws ParseException{
         if (pacientes.isEmpty()){
             System.out.println("Cree nuevo paciente");
             Pacientes pacientess = new Pacientes();
@@ -255,7 +259,7 @@ public class Pacientes extends Persona implements Datos {
         }
          
         for(int i=0; i<pacientes.size();i++){
-            if(pacientes.get(i).rut==rut){
+            if(pacientes.get(i).rut.equals(rut)){
                 System.out.println("El paciente ya se encontraba registrado en el sistema");
         //        profesional.registrarHora();
             }
@@ -280,7 +284,7 @@ public class Pacientes extends Persona implements Datos {
         System.out.println("Ingrese RUT del paciente sin puntos ni guion");
         RutPaciente = Entrada.nextInt();
         for(int i = 0; i < pacientes.size(); i++){
-            if(pacientes.get(i).getRut()==(RutPaciente)){
+            if(pacientes.get(i).getRut().equals(RutPaciente)){
             do {
                 System.out.println("____________________________");
                 System.out.println("Ingrese una opcion");
@@ -309,8 +313,8 @@ public class Pacientes extends Persona implements Datos {
 
                     case 3:                      
                         System.out.println("Ingrese telefono modificado");
-                        numero = Entrada.nextInt();
-                        paciente.setTelefono(pacientes.get(i).telefono = numero);
+                        texto = Entrada.next();
+                        paciente.setTelefono(pacientes.get(i).telefono = texto);
                         System.out.println("TELEFONO MODIFICADO CON EXITO");
                         break;
 
@@ -336,7 +340,7 @@ public class Pacientes extends Persona implements Datos {
         System.out.println("Ingrese RUT del paciente sin puntos ni guion");
         RutPaciente = Entrada.nextInt();
         for(int i = 0; i < pacientes.size(); i++){
-            if(pacientes.get(i).getRut()==(RutPaciente)){        
+            if(pacientes.get(i).getRut().equals(RutPaciente)){        
                 pacientes.remove(i);
                 System.out.println("**************************");
                 System.out.println("*** Paciente eliminado ***");
@@ -349,7 +353,7 @@ public class Pacientes extends Persona implements Datos {
     /**
      * Sobreescritura del método mostrar de la clase abstracta Persona.
      */
-    @Override
+    //@Override
     public void mostrar(){
         if (pacientes.isEmpty())
             System.out.println("*** NO SE ENCUENTRAN PACIENTES REGISTRADOS ***");
@@ -366,7 +370,14 @@ public class Pacientes extends Persona implements Datos {
         }
     }   
     
-    public void InsertarDatoss(){
+    public void mostrarr() throws ParseException{
+        VentanaPaciente paciente = new VentanaPaciente("Listado de  Pacientes");
+        paciente.ListadoPacientes();
+        
+    }
+    
+    
+    public void InsertarDatoss() throws ParseException{
         VentanaPaciente paciente = new VentanaPaciente("Registrar Paciente");
         paciente.Formulario();
     }
