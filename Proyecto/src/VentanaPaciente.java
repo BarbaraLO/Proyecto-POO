@@ -1,14 +1,10 @@
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.awt.HeadlessException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,457 +16,536 @@ import java.util.Date;
  *
  * @author naomi
  */
-public class VentanaPaciente extends Frame implements WindowListener, ActionListener, KeyListener {
+public class VentanaPaciente extends javax.swing.JFrame {
+    DefaultTableModel modelo;
 
-    private Label lblNombre, lblApellido,lblRut,lblFecha,lblTelefono, lblCorreo, lblMensaje,lblTitulo;
-    private Button btnAceptar, btnLimpiar,btnReporte;
-    private TextField txtNombre,txtApellido,txtRut,txtFecha, txtTelefono, txtCorreo;
-    boolean presion=false;
-
-    private Pacientes paciente= new Pacientes();
-    
-    public VentanaPaciente(String titulo){
-        super(titulo);
-        this.addWindowListener(this);
-    }
-
-    // Getter y Setter
-    public Pacientes getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Pacientes paciente) {
-        this.paciente = paciente;
-    }
-
-    public Label getLblNombre() {
-        return lblNombre;
-    }
-
-    public Label getLblApellido() {
-        return lblApellido;
-    }
-
-    public Label getLblRut() {
-        return lblRut;
-    }
-
-    public Label getLblFecha() {
-        return lblFecha;
-    }
-
-    public Label getLblTelefono() {
-        return lblTelefono;
-    }
-
-    public Label getLblCorreo() {
-        return lblCorreo;
-    }
-
-    public Label getLblMensaje() {
-        return lblMensaje;
-    }
-
-    public Button getBtnAceptar() {
-        return btnAceptar;
-    }
-
-    public Button getBtnLimpiar() {
-        return btnLimpiar;
-    }
-
-    public Button getBtnReporte() {
-        return btnReporte;
-    }
-
-    public TextField getTxtNombre() {
-        return txtNombre;
-    }
-
-    public TextField getTxtApellido() {
-        return txtApellido;
-    }
-
-    public TextField getTxtRut() {
-        return txtRut;
-    }
-
-    public TextField getTxtFecha() {
-        return txtFecha;
-    }
-
-    public TextField getTxtTelefono() {
-        return txtTelefono;
-    }
-
-    public TextField getTxtCorreo() {
-        return txtCorreo;
-    }
-
-    public boolean isPresion() {
-        return presion;
-    }
-
-    public void setLblNombre(Label lblNombre) {
-        this.lblNombre = lblNombre;
-    }
-
-    public void setLblApellido(Label lblApellido) {
-        this.lblApellido = lblApellido;
-    }
-
-    public void setLblRut(Label lblRut) {
-        this.lblRut = lblRut;
-    }
-
-    public void setLblFecha(Label lblFecha) {
-        this.lblFecha = lblFecha;
-    }
-
-    public void setLblTelefono(Label lblTelefono) {
-        this.lblTelefono = lblTelefono;
-    }
-
-    public void setLblCorreo(Label lblCorreo) {
-        this.lblCorreo = lblCorreo;
-    }
-
-    public void setLblMensaje(Label lblMensaje) {
-        this.lblMensaje = lblMensaje;
-    }
-
-    public void setBtnAceptar(Button btnAceptar) {
-        this.btnAceptar = btnAceptar;
-    }
-
-    public void setBtnLimpiar(Button btnLimpiar) {
-        this.btnLimpiar = btnLimpiar;
-    }
-
-    public void setBtnReporte(Button btnReporte) {
-        this.btnReporte = btnReporte;
-    }
-
-    public void setTxtNombre(TextField txtNombre) {
-        this.txtNombre = txtNombre;
-    }
-
-    public void setTxtApellido(TextField txtApellido) {
-        this.txtApellido = txtApellido;
-    }
-
-    public void setTxtRut(TextField txtRut) {
-        this.txtRut = txtRut;
-    }
-
-    public void setTxtFecha(TextField txtFecha) {
-        this.txtFecha = txtFecha;
-    }
-
-    public void setTxtTelefono(TextField txtTelefono) {
-        this.txtTelefono = txtTelefono;
-    }
-
-    public void setTxtCorreo(TextField txtCorreo) {
-        this.txtCorreo = txtCorreo;
-    }
-
-    public void setPresion(boolean presion) {
-        this.presion = presion;
+    /**
+     * Creates new form VentanaCRUDPaciente
+     */
+    public VentanaPaciente() {
+        initComponents();
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Rut");
+        modelo.addColumn("Fecha Nacimiento");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Correo"); 
+        this.tabla.setModel(modelo);
     }
     
-    
-    public void Formulario() throws ParseException{
-        
-        this.setSize(1200, 700);
-        this.setLayout(null);
-        this.setVisible(true);
-         
-	Color formColor = new Color(53, 59, 72);
-	setBackground(formColor);
-         
-         
-        Font titleFont = new Font("arial", Font.BOLD, 25);
-	Font labelFont =new  Font("arial", Font.PLAIN, 18);
-	Font textFont =new  Font("arial", Font.PLAIN, 15);
-        
-        
-         lblTitulo =new Label("DATOS DEL PACIENTE");  
-	 lblTitulo.setBounds(250,50,450,30);
-	 lblTitulo.setFont(titleFont);  
-	 lblTitulo.setForeground(Color.WHITE);
-        
-         lblMensaje=new Label("");
-         lblMensaje.setForeground(Color.RED);
-         lblMensaje.setBounds(400,50,400,30);
-         
-         lblNombre=new Label("Nombre");  
-	 lblNombre.setBounds(250,100,150,30);
-	 lblNombre.setFont(labelFont);  
-	 lblNombre.setForeground(Color.WHITE);
-        
-         
-         txtNombre=new TextField();
-	 txtNombre.setBounds(400,100,400,30);
-	 txtNombre.setFont(textFont);
-          
-         lblApellido=new Label("Apellidos");  
-	 lblApellido.setBounds(250,150,150,30);
-	 lblApellido.setFont(labelFont);  
-	 lblApellido.setForeground(Color.WHITE);
-        
-         
-         txtApellido=new TextField();
-	 txtApellido.setBounds(400,150,400,30);
-	 txtApellido.setFont(textFont); 
-         
-         lblRut=new Label("Rut");  
-	 lblRut.setBounds(250,200,150,30);
-	 lblRut.setFont(labelFont);  
-	 lblRut.setForeground(Color.WHITE);
-        
-         
-         txtRut=new TextField();
-	 txtRut.setBounds(400,200,400,30);
-	 txtRut.setFont(textFont);
-         txtRut.setText("RUT sin puntos ni guion");
-                 
-         lblFecha=new Label("Fecha Nacimiento");  
-	 lblFecha.setBounds(250,250,150,30);
-	 lblFecha.setFont(labelFont);  
-	 lblFecha.setForeground(Color.WHITE);
-        
-         txtFecha=new TextField();
-	 txtFecha.setBounds(400,250,400,30);
-	 txtFecha.setFont(textFont);
-         txtFecha.setText("DD/MM/YYYY");
-        
-         
-         lblTelefono=new Label("Telefono");  
-	 lblTelefono.setBounds(250,300,150,30);
-	 lblTelefono.setFont(labelFont);  
-	 lblTelefono.setForeground(Color.WHITE);
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-         txtTelefono=new TextField();
-	 txtTelefono.setBounds(400,300,400,30);
-	 txtTelefono.setFont(textFont);
+        datoNuevo = new javax.swing.JPanel();
+        Nombre = new javax.swing.JLabel();
+        Apellido = new javax.swing.JLabel();
+        Rut = new javax.swing.JLabel();
+        Fecha = new javax.swing.JLabel();
+        Telefono = new javax.swing.JLabel();
+        Correo = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
+        txtRut = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
+        btnAgregar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
+        fila = new javax.swing.JLabel();
+        columna = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtFila = new javax.swing.JTextField();
+        txtColumna = new javax.swing.JTextField();
+        txtNuevoDato = new javax.swing.JTextField();
+        btnReservar = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
 
-                 
-         lblCorreo=new Label("Correo");  
-	 lblCorreo.setBounds(250,350,150,30);
-	 lblCorreo.setFont(labelFont);  
-	 lblCorreo.setForeground(Color.WHITE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-         txtCorreo=new TextField();
-	 txtCorreo.setBounds(400,350,400,30);
-	 txtCorreo.setFont(textFont);
-             
-         btnAceptar=new Button("Crear");
-         btnAceptar.setBounds(500,500,100,50);
-	 btnAceptar.setFont(textFont);
-         
-         btnLimpiar=new Button("Limpiar");
-         btnLimpiar.setBounds(500,500,100,50);
-	 btnLimpiar.setFont(textFont);
-                 
-         btnAceptar.addActionListener(this);
-         btnLimpiar.addActionListener(this);
-         txtFecha.addKeyListener(this);
-         
-         
-         add(lblTitulo);
-         add(lblMensaje);
-	 add(lblNombre);
-         add(txtNombre);
-         add(lblApellido);
-         add(txtApellido);
-         add(lblRut);
-         add(txtRut);
-         add(lblFecha);
-         add(txtFecha);
-         add(lblTelefono);
-         add(txtTelefono);
-         add(lblCorreo);
-         add(txtCorreo);
-         add(btnAceptar);
-         add(btnLimpiar);
-         
-    }
- 
+        datoNuevo.setBackground(new java.awt.Color(153, 204, 255));
+        datoNuevo.setForeground(new java.awt.Color(0, 0, 0));
 
-    public void ListadoPacientes(){
-        
-        this.removeAll();
-        
-        this.setLayout(new GridLayout(2, 5));
-        this.setSize(1000,600);
-        this.setVisible(true);
-	Color formColor = new Color(53, 59, 72);
-	setBackground(formColor);
-         
-        Font titleFont = new Font("arial", Font.BOLD, 25);
-	Font labelFont =new  Font("arial", Font.PLAIN, 18);
-	Font textFont =new  Font("arial", Font.PLAIN, 15);
-                
-        lblMensaje=new Label("Nombre");
-        lblMensaje.setForeground(Color.WHITE);
-        this.add(lblMensaje);
-         
-        lblMensaje=new Label("Apellidos");
-        lblMensaje.setForeground(Color.WHITE);
-        this.add(lblMensaje);
-         
-        lblMensaje=new Label("Rut");
-        lblMensaje.setForeground(Color.WHITE);
-        this.add(lblMensaje);
-         
-        lblMensaje=new Label("Fecha Nacimiento");
-        lblMensaje.setForeground(Color.WHITE);
-        this.add(lblMensaje);  
-         
-        lblMensaje=new Label("Telefono");
-        lblMensaje.setForeground(Color.WHITE);
-        this.add(lblMensaje);
-         
-        lblMensaje=new Label("Correo");
-        lblMensaje.setForeground(Color.WHITE);
-        this.add(lblMensaje); 
+        Nombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Nombre.setForeground(new java.awt.Color(0, 0, 0));
+        Nombre.setText("Nombre");
 
-        
-   for(int i=0; i<paciente.getPacientes().size();i++){
-       
-            lblMensaje=new Label(paciente.getPacientes().get(i).getNombre());
-            lblMensaje.setForeground(Color.WHITE);
-            this.add(lblMensaje);  
-            
-            lblMensaje=new Label(paciente.getPacientes().get(i).getApellido());
-            lblMensaje.setForeground(Color.WHITE);
-            this.add(lblMensaje); 
-            
-            lblMensaje=new Label(paciente.getPacientes().get(i).getRut());
-            lblMensaje.setForeground(Color.WHITE);
-            this.add(lblMensaje); 
-            
-            lblMensaje=new Label(paciente.getPacientes().get(i).getFechaNacimiento().toString());
-            lblMensaje.setForeground(Color.WHITE);
-            this.add(lblMensaje);         
+        Apellido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Apellido.setForeground(new java.awt.Color(0, 0, 0));
+        Apellido.setText("Apelliido");
 
+        Rut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Rut.setForeground(new java.awt.Color(0, 0, 0));
+        Rut.setText("Rut");
 
-            lblMensaje=new Label(paciente.getPacientes().get(i).getTelefono());
-            lblMensaje.setForeground(Color.WHITE);
-            this.add(lblMensaje); 
-            
-            lblMensaje=new Label(paciente.getPacientes().get(i).getCorreo());
-            lblMensaje.setForeground(Color.WHITE);
-            this.add(lblMensaje);    
-          } 
-   
-    }
+        Fecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Fecha.setForeground(new java.awt.Color(0, 0, 0));
+        Fecha.setText("Fecha de nacimiento");
 
-    
-    @Override
-    public void actionPerformed(ActionEvent e) {
-     Date fechaNacimiento;
-     
-     Object obj = e.getSource();
+        Telefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Telefono.setForeground(new java.awt.Color(0, 0, 0));
+        Telefono.setText("Telefono");
 
-        if(obj==btnReporte){
-            System.out.println("Listado de pacientes");
-            ListadoPacientes();
-        }
+        Correo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Correo.setForeground(new java.awt.Color(0, 0, 0));
+        Correo.setText("Correo");
 
-
-        if(obj==btnAceptar){
-            System.out.println("crear");
-
-
-
-        if(!txtNombre.getText().isEmpty() && !txtApellido.getText().isEmpty() &&  !txtFecha.getText().isEmpty() &&  !txtRut.getText().isEmpty() &&  !txtTelefono.getText().isEmpty() &&  !txtCorreo.getText().isEmpty()){
-            try {
-                fechaNacimiento=new SimpleDateFormat("dd/mm/yyyy").parse(txtFecha.getText());    
-
-                paciente.setNombre(txtNombre.getText());
-                paciente.setApellido(txtApellido.getText());
-                paciente.setRut(txtRut.getText());
-                paciente.setFechaNacimiento(fechaNacimiento);
-                paciente.setTelefono(txtTelefono.getText());
-                paciente.setCorreo(txtCorreo.getText());
-
-                paciente.AgregarPaciente();
-
-
-                this.removeAll();
-
-                lblMensaje=new Label("Datos insertados!!!");
-                lblMensaje.setForeground(Color.RED);
-                lblMensaje.setBounds(550,200,400,30);
-                Font textFont =new  Font("arial", Font.PLAIN, 25);
-                add(lblMensaje); 
-
-
-                this.removeAll();
-
-                btnReporte=new Button("Listado de pacientes");
-                lblMensaje.setForeground(Color.WHITE);
-                btnReporte.setBounds(400,300,400,30);
-                btnReporte.setFont(textFont);
-
-
-                add(lblMensaje);                  
-                add(btnReporte);
-                btnReporte.addActionListener(this);
-                paciente.mostrar();
-
-            } catch (ParseException ex) {;
+        txtNombre.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
             }
-    
-        }   
-        }           
-}
+        });
 
+        txtApellido.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtRut.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtFecha.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
+        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonoActionPerformed(evt);
+            }
+        });
+
+        txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnAgregar.setBackground(new java.awt.Color(153, 153, 255));
+        btnAgregar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setBackground(new java.awt.Color(153, 153, 255));
+        btnEliminar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnModificar.setBackground(new java.awt.Color(153, 153, 255));
+        btnModificar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
+        tabla.setAutoCreateRowSorter(true);
+        tabla.setBackground(new java.awt.Color(255, 255, 255));
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabla);
+
+        fila.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        fila.setForeground(new java.awt.Color(0, 0, 0));
+        fila.setText("Fila");
+
+        columna.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        columna.setForeground(new java.awt.Color(0, 0, 0));
+        columna.setText("Columna");
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Dato nuevo");
+
+        txtFila.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtColumna.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtNuevoDato.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnReservar.setBackground(new java.awt.Color(153, 153, 255));
+        btnReservar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnReservar.setText("Reserva");
+        btnReservar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReservarActionPerformed(evt);
+            }
+        });
+
+        btnSiguiente.setText("SIGUIENTE");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout datoNuevoLayout = new javax.swing.GroupLayout(datoNuevo);
+        datoNuevo.setLayout(datoNuevoLayout);
+        datoNuevoLayout.setHorizontalGroup(
+            datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(datoNuevoLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(datoNuevoLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnModificar)
+                        .addGap(38, 38, 38)
+                        .addComponent(btnReservar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datoNuevoLayout.createSequentialGroup()
+                        .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(datoNuevoLayout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSiguiente))
+                            .addGroup(datoNuevoLayout.createSequentialGroup()
+                                .addComponent(fila)
+                                .addGap(5, 5, 5)
+                                .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(datoNuevoLayout.createSequentialGroup()
+                                        .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(Nombre)
+                                            .addComponent(Apellido)
+                                            .addComponent(Rut))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datoNuevoLayout.createSequentialGroup()
+                                                .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(Correo))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datoNuevoLayout.createSequentialGroup()
+                                                .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(31, 31, 31)
+                                                .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(Fecha, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(Telefono, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                    .addGroup(datoNuevoLayout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(txtFila, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(columna)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtColumna)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel3)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                    .addComponent(txtTelefono)
+                                    .addComponent(txtCorreo)
+                                    .addComponent(txtNuevoDato))))
+                        .addGap(228, 228, 228))))
+        );
+        datoNuevoLayout.setVerticalGroup(
+            datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(datoNuevoLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Nombre)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(datoNuevoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Apellido)))
+                    .addGroup(datoNuevoLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Rut)
+                        .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Correo)
+                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44)
+                .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(columna)
+                    .addComponent(fila)
+                    .addComponent(jLabel3)
+                    .addComponent(txtFila, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtColumna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNuevoDato, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnReservar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(datoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(datoNuevoLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(datoNuevoLayout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(btnSiguiente)))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(datoNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(datoNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        // TODO add your handling code here:
+        String rut=null, telefono=null;
+               
+        try{
+            rut=txtRut.getText();
+            if(!rut.matches("[0-9]*"))
+                JOptionPane.showMessageDialog(this, "Para rut se admiten solo digitos");            
+        }catch(HeadlessException e){
+            JOptionPane.showMessageDialog(this, "Para rut se admiten solo digitos");
+            
+        }
+        try{
+           FileWriter archivo = new FileWriter("c:\\errorJava\\errores.txt", true);
+            try (PrintWriter printer = new PrintWriter(archivo)) {
+                printer.println("Recuadro rut: se ingresan caracteres en vez de numeros");
+            }
+            
+        }catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        
+        try{
+            telefono=txtTelefono.getText();
+            if(!telefono.matches("[0-9]*"))
+                JOptionPane.showMessageDialog(this, "Para telefono se admiten solo digitos");            
+        }catch(HeadlessException e){
+            JOptionPane.showMessageDialog(this, "Para telefono se admiten solo digitos");
+            
+        }
+        try{
+            FileWriter archivo = new FileWriter("c:\\errorJava\\errores.txt", true);
+            try (PrintWriter printer = new PrintWriter(archivo)) {
+                printer.println("Recuadro telefono: se ingresan caracteres en vez de numeros");
+            }
+            
+        }catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }        
+        
    
-    public void Alerta(String Mensaje){
-        Dialog ventanaAlerta = new Dialog(this, Mensaje, true);  
-            ventanaAlerta.setLayout( new FlowLayout() );  
-                Button b = new Button ("OK"); 
-                  
-                b.addActionListener ( new ActionListener(){  
-                    public void actionPerformed( ActionEvent e )  
-                    {  
-                        ventanaAlerta.setVisible(false);  
-                    }  
-                });  
-                ventanaAlerta.add( new Label ("Click para continuar."));  
-                ventanaAlerta.add(b);
-                ventanaAlerta.setSize(300,300);    
-                ventanaAlerta.setVisible(true);            
-    }    
-    
-    public void windowClosing(WindowEvent e) {
-        System.out.println("Cerrar la interface");
-        dispose();         
-    }  
-    
-      public void windowOpened(WindowEvent e) {}
-      public void windowActivated(WindowEvent e) {}
-      public void windowIconified(WindowEvent e) {}
-      public void windowDeiconified(WindowEvent e) {}
-      public void windowDeactivated(WindowEvent e) {}
-      public void windowClosed(WindowEvent e) {}
+        String [] info = new String[6];
+        
+        info[0]=txtNombre.getText();
+        info[1]=txtApellido.getText();
+        info[2]=txtRut.getText();
+        info[3]=txtFecha.getText();
+        info[4]=txtTelefono.getText();
+        info[5]=txtCorreo.getText();
+        modelo.addRow(info);
+        
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtRut.setText("");
+        txtFecha.setText("");
+        txtTelefono.setText("");
+        txtCorreo.setText("");
+        
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
-   //eventos teclado
-    public void keyTyped(KeyEvent e) {}
-    public void keyPressed(KeyEvent e){
-          Object obj = e.getSource();
-          if(obj==txtFecha && !presion){
-                 txtFecha.setText("");
-                 presion=true;
-              
-          }
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        int fila=tabla.getSelectedRow();
+        if(fila>=0){
+            modelo.removeRow(fila);
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "seleccione fila");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        int fila=Integer.parseInt(txtFila.getText());
+        int columa=Integer.parseInt(txtColumna.getText());
+        
+        modelo.setValueAt(txtNuevoDato.getText(), fila, columa);
+      
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
+        // TODO add your handling code here:
+        VentanaReserva vl = new VentanaReserva();
+        vl.setVisible(true);
+    }//GEN-LAST:event_btnReservarActionPerformed
+
+    
+   
+    
+    
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        // TODO add your handling code here:
+                String rut=null, telefono=null;
+               
+        try{
+            rut=txtRut.getText();
+            if(!rut.matches("[0-9]*"))
+                JOptionPane.showMessageDialog(this, "Para rut se admiten solo digitos");            
+        }catch(HeadlessException e){
+            JOptionPane.showMessageDialog(this, "Para rut se admiten solo digitos");
+            
+        }
+        try{
+            FileWriter archivo = new FileWriter("c:\\errorJava\\errores.txt", true);
+            try (PrintWriter printer = new PrintWriter(archivo)) {
+                printer.println("Recuadro rut: se ingresan caracteres en vez de numeros");
+            }
+            
+        }catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        
+        try{
+            telefono=txtTelefono.getText();
+            if(!telefono.matches("[0-9]*"))
+                JOptionPane.showMessageDialog(this, "Para telefono se admiten solo digitos");            
+        }catch(HeadlessException e){
+            JOptionPane.showMessageDialog(this, "Para telefono se admiten solo digitos");
+            
+        }
+        try{
+            FileWriter archivo = new FileWriter("c:\\errorJava\\errores.txt", true);
+            try (PrintWriter printer = new PrintWriter(archivo)) {
+                printer.println("Recuadro telefono: se ingresan caracteres en vez de numeros");
+            }
+            
+        }catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        
+        if(txtNombre.getText().isEmpty()||txtApellido.getText().isEmpty()|| txtRut.getText().isEmpty()|| txtTelefono.getText().isEmpty()||txtCorreo.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese todos los campos");
+            
+        }else{
+            Pacientes p=new Pacientes();
+            p.setNombre(txtNombre.getText());
+            p.setApellido(txtApellido.getText());
+            p.setRut(txtRut.getText());
+            p.setCorreo(txtCorreo.getText());
+            p.setTelefono(txtTelefono.getText());
+            
+          
+        }
+    }//GEN-LAST:event_btnSiguienteActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VentanaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VentanaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VentanaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VentanaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VentanaPaciente().setVisible(true);
+            }
+        });
     }
-    
-    public void keyReleased(KeyEvent e){}    
-    
-    
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Apellido;
+    private javax.swing.JLabel Correo;
+    private javax.swing.JLabel Fecha;
+    private javax.swing.JLabel Nombre;
+    private javax.swing.JLabel Rut;
+    private javax.swing.JLabel Telefono;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnReservar;
+    private javax.swing.JButton btnSiguiente;
+    private javax.swing.JLabel columna;
+    private javax.swing.JPanel datoNuevo;
+    private javax.swing.JLabel fila;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabla;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtColumna;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtFila;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNuevoDato;
+    private javax.swing.JTextField txtRut;
+    private javax.swing.JTextField txtTelefono;
+    // End of variables declaration//GEN-END:variables
 }
-    
