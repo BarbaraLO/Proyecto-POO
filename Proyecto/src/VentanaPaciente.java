@@ -378,21 +378,33 @@ public class VentanaPaciente extends javax.swing.JFrame {
         
    
         String [] info = new String[6];
-        
-        info[0]=txtNombre.getText();
-        info[1]=txtApellido.getText();
-        info[2]=txtRut.getText();
-        info[3]=txtFecha.getText();
-        info[4]=txtTelefono.getText();
-        info[5]=txtCorreo.getText();
-        modelo.addRow(info);
-        
-        txtNombre.setText("");
-        txtApellido.setText("");
-        txtRut.setText("");
-        txtFecha.setText("");
-        txtTelefono.setText("");
-        txtCorreo.setText("");
+        if(txtNombre.getText().isEmpty()||txtApellido.getText().isEmpty()|| txtRut.getText().isEmpty()|| txtTelefono.getText().isEmpty()||txtCorreo.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese todos los campos");
+            
+        }else{
+            try{
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+            
+            info[0]=txtNombre.getText();
+            info[1]=txtApellido.getText();
+            info[2]=txtRut.getText();
+            info[3]=txtFecha.getText();
+            info[4]=txtTelefono.getText();
+            info[5]=txtCorreo.getText();
+            modelo.addRow(info);            
+            
+            txtNombre.setText("");
+            txtApellido.setText("");
+            txtRut.setText("");
+            txtFecha.setText("");
+            txtTelefono.setText("");
+            txtCorreo.setText("");
+        }        
+
         
     }//GEN-LAST:event_btnAgregarActionPerformed
 
