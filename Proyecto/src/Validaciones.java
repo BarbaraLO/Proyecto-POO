@@ -1,5 +1,9 @@
 
 import java.util.Scanner;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 
 /**
@@ -16,41 +20,56 @@ public class Validaciones {
      * Valida que el numero sea de tipo entero.
      * @return Cadena de numeros.
      */
-    public int Validar(){
-       int cadenaNumeros=-1;
-       do{
+    public int ValidarInt(){
         try{
-           cadenaNumeros=Entrada.nextInt();
-           return cadenaNumeros;
-           
-        }catch(Exception e){
-            System.out.println("Dato no válido "+e.toString());
+            String cadenaNumeros = Entrada.next();
+            if(cadenaNumeros.matches("[0-9]*"))
+                return Integer.valueOf(cadenaNumeros);
+            else
+                System.out.println("Numero no válido");
+        }catch(NumberFormatException e){
+            System.out.println(" El numero no es válido");
         }
-        
-       }while(cadenaNumeros<0 || cadenaNumeros==0);
-              
-        return cadenaNumeros;
-    }        
+       
+        return 0;
+    }      
     
     
     /**
      * Valida que los caracteres sean una cadena de texto.
-     * @param cadenaTexto caracteres ingresados.
      * @return Cadena de texto.
      */
-    public String Validar(String cadenaTexto){
-      String Cadena=null;
-      do{
+    public String ValidarTexto(){
         try{
-         Cadena=Entrada.next();
+            String cadenaTexto = Entrada.next();
+            if(cadenaTexto.matches("[A-Z,a-z]*"))
+                return cadenaTexto;
+            else
+                System.out.println("Dato no valido");
         }catch(Exception e){
-           System.out.println("Dato no válido");   
+                System.out.println("El Dato no es válido");
         }
-       }while(Cadena==null);
         
-        return Cadena;
+        return null; 
     }
+    
+    /**
+     * Valida que los caracteres sean de formato fecha.
+     * @return fecha.
+     */
+    public Date ValidarFecha(){
+        String cadenaFecha = Entrada.next();
+        DateFormat fecha = new SimpleDateFormat(cadenaFecha);
+        Date fechaSalida;
+        fecha.setLenient(false);
+            
+        try{
+            fechaSalida=fecha.parse(cadenaFecha);
+        }catch (ParseException e){
+            System.out.println("Fecha no valida");
+            return null;
+        }
+        return fechaSalida;
+        }
+    
 }    
-    
-    
-
