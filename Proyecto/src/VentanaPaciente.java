@@ -383,11 +383,7 @@ public class VentanaPaciente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ingrese todos los campos");
             
         }else{
-            try{
-                
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
-            }
+         
             
             info[0]=txtNombre.getText();
             info[1]=txtApellido.getText();
