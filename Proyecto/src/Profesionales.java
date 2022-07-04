@@ -1,4 +1,5 @@
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,7 +11,7 @@ import java.util.Scanner;
 public class Profesionales extends Persona {
     
     private String nombre; //coresponde al nombre del profesional
-    private int rut; //corresponde al rut del profesional para poder identificarlo como persona individual
+    private String rut; //corresponde al rut del profesional para poder identificarlo como persona individual
     private int especialidad; // se le asigna un codigo de especialidad según corresponda
     private ArrayList agenda; // agenda trabaja con codigos del 1 al 6 representando los días de la semana, esto para tener una idea de los días disponibles del profesional
     private double horario; // el horario muestra la última hora disponible del profesional, se considera que el horaio de inicio de atención es desde las 8am.
@@ -22,7 +23,7 @@ public class Profesionales extends Persona {
     public Profesionales() {
 
         this.nombre = "";
-        this.rut = 0;
+        this.rut = "";
         this.especialidad = 0;
         this.agenda = new ArrayList();
         this.horario = 0;
@@ -36,7 +37,7 @@ public class Profesionales extends Persona {
      * @param especialidad Codigo identificador de especialidad a la que se dedica el profesional.
      * @param horario Horario en el que atiende el profesional.
      */
-    public Profesionales(String nombre, int rut, int especialidad, double horario){
+    public Profesionales(String nombre, String rut, int especialidad, double horario){
         this.nombre = nombre;
         this.rut = rut;
         this.especialidad = especialidad;
@@ -51,7 +52,7 @@ public class Profesionales extends Persona {
      * @param horario Horario en el que atiende el profesional.
      * @param profesionales Listado de profesionales.
      */
-    public Profesionales(String nombre, int rut, ArrayList agenda, double horario, Profesionales profesionales ){
+    public Profesionales(String nombre, String rut, ArrayList agenda, double horario, Profesionales profesionales ){
         this.nombre = nombre;
         this.rut = rut;
         this.agenda = new ArrayList();
@@ -73,7 +74,7 @@ public class Profesionales extends Persona {
      * Permite obtener valor de atributo rut.
      * @return rut del profesional
      */
-    public int getRut() {
+    public String getRut() {
         return rut;
     }
     
@@ -121,7 +122,7 @@ public class Profesionales extends Persona {
      * Permite fijar valores del atributo rut.
      * @param rut rut del profesional
      */
-    public void setRut(int rut) {
+    public void setRut(String rut) {
         this.rut = rut;
     }
 
@@ -230,10 +231,10 @@ public class Profesionales extends Persona {
      * Contiene una lista con los datos de los profesionales: nombre, rut, especialidad y horario.
      */
     public void DatosProfesionales(){     
-        profesionales.add(new Profesionales("Miguel Sanchez",114672852,01,16.00)); // Cardiologia
-        profesionales.add(new Profesionales("Jose Gonzalez",96482745,02,15.30)); // Dermatologia
-        profesionales.add(new Profesionales("Marcela Araya",79472487,03,17.00)); // Pediatria
-        profesionales.add(new Profesionales("Sofia Rodriguez",158593642,04,16.45)); // Neurologia
+        profesionales.add(new Profesionales("Miguel Sanchez","11.467.285-2",01,16.00)); // Cardiologia
+        profesionales.add(new Profesionales("Jose Gonzalez","9.648.274-5",02,15.30)); // Dermatologia
+        profesionales.add(new Profesionales("Marcela Araya","7.947.248-7",03,17.00)); // Pediatria
+        profesionales.add(new Profesionales("Sofia Rodriguez","15.859.364-2",04,16.45)); // Neurologia
     }
     
     /**
@@ -249,6 +250,15 @@ public class Profesionales extends Persona {
         System.out.println("******************************");
         }
     }   
+    
+    public void MostrarProfesionales() throws ParseException{
+        VentanaProfesionales profesional  = new VentanaProfesionales("Datos de Profesionales");
+        DatosProfesionales();
+        mostrarProfesionales();
+        profesional.InfoProfesionales();
+        
+    }
+    
     
 }
  

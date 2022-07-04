@@ -45,6 +45,7 @@ public class Pacientes extends Persona implements Datos {
         this.correo=correo;  
     }
 
+    
 //getters y setters
     /**
      * Permite obtener valores de lista de pacientes
@@ -157,8 +158,7 @@ public class Pacientes extends Persona implements Datos {
      */
     public void setCorreo(String correo) {
         this.correo = correo;
-    }    
-
+    }
  
     
     Scanner Entrada = new Scanner(System.in);
@@ -211,7 +211,7 @@ public class Pacientes extends Persona implements Datos {
      * @throws ParseException Señala que ha ocurrido un error.
      */
     public void AgregarPaciente() throws ParseException{
-        String Fecha=null;
+    /*    String Fecha=null;
         
         System.out.println("*** Agregando Paciente, a continuacion ingrese sus datos ***"); 
         
@@ -222,24 +222,28 @@ public class Pacientes extends Persona implements Datos {
         this.apellido=Entrada.next();
         
         System.out.println("Ingrese su RUT sin puntos ni guion");
-        this.rut=Entrada.next();
+        this.rut=Entrada.nextInt();
         //Rut=validaciones.Validar();
         
         System.out.println("Ingrese su fecha de nacimiento en formato dd/mm/yy");
         Fecha=Entrada.next();
         
         System.out.println("Ingrese su telefono");
-        this.telefono=Entrada.next();
+        this.telefono=Entrada.nextInt();
         
         System.out.println("Ingrese su correo electronico");
         this.correo=Entrada.next();
         
         Date FFecha=new SimpleDateFormat("dd/mm/yyyy").parse(Fecha);
         
-        Pacientes paciente = new Pacientes(nombre,apellido,rut,FFecha,telefono,correo);
+    */  Pacientes paciente = new Pacientes(nombre,apellido,rut,fechaNacimiento,telefono,correo);
         pacientes.add(paciente);
         
-    //    System.out.println("*** Se ha ingresado un nuevo paciente con exito! ***");
+        if (pacientes.isEmpty()) {
+            System.out.println("*** LISTA VACIA ***");
+        } else {
+            System.out.println("*** Se ha ingresado un nuevo paciente con exito! ***");
+        }
     }
     
     /**
@@ -349,7 +353,7 @@ public class Pacientes extends Persona implements Datos {
     /**
      * Sobreescritura del método mostrar de la clase abstracta Persona.
      */
-    @Override
+    //@Override
     public void mostrar(){
         if (pacientes.isEmpty())
             System.out.println("*** NO SE ENCUENTRAN PACIENTES REGISTRADOS ***");
@@ -364,9 +368,19 @@ public class Pacientes extends Persona implements Datos {
         System.out.println("Correo: "+pacientes.get(i).correo);
         System.out.println("******************************");
         }
-    }    
+    }   
     
-
+    public void mostrarr() throws ParseException{
+        VentanaPaciente paciente = new VentanaPaciente("Listado de  Pacientes");
+        paciente.ListadoPacientes();
+        
+    }
+    
+    
+    public void InsertarDatoss() throws ParseException{
+        VentanaPaciente paciente = new VentanaPaciente("Registrar Paciente");
+        paciente.Formulario();
+    }
     
     /**
      * Metodo Insertar datos de la interface Datos.

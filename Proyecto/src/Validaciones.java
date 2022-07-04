@@ -1,9 +1,9 @@
 
-import java.util.Scanner;
-import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
 
 
 /**
@@ -20,7 +20,8 @@ public class Validaciones {
      * Valida que el numero sea de tipo entero.
      * @return Cadena de numeros.
      */
-    public int ValidarInt(){
+ 
+        public int ValidarInt(){
         try{
             String cadenaNumeros = Entrada.next();
             if(cadenaNumeros.matches("[0-9]*"))
@@ -73,3 +74,6 @@ public class Validaciones {
         }
     
 }    
+    
+    
+
